@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+    <test name="Test">
+        <classes>
+            <class name="meibanPCAddressList.favSave_staff"/>
+        </classes>
+        <listeners>
+            <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+            <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+        </listeners>
+        <usedefaultlisteners name="false"/>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

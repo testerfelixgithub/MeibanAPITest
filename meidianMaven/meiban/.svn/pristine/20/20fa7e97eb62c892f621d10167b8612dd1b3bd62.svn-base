@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="true">
+  <test name="Test">
+        <parameter name="parameter1" value="parameter1" />
+        <parameter name="parameter2" value="123" />
+    <classes>
+      <class name="meibanTestNG.NewTestNG"/>
+       <methods>
+        <include name="f" />
+        <include name="f1" />
+        <include name="f2" />
+      </methods>
+    </classes>
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+     </listeners>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

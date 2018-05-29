@@ -1,0 +1,30 @@
+package meibanNotice;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class queryEditNoticeById {
+	Common comm=new Common();
+  @Test
+  public void queryEditNoticeById() //存在的公告
+  {
+    String url="http://10.112.178.22/notice/admin/queryEditNoticeById/102";
+    //String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+    //System.out.println(token);
+     String result=comm.GetRequest(url, "ce0ed01e-c784-4860-9fff-9e025e70393b", "E:\\queryEditNoticeById.txt");
+     String  message = comm.GetCode(result);
+     Assert.assertEquals(comm.Get_Code(result), 0, message); 
+  }
+  @Test
+  public void queryEditNoticeById1() //不存在的公告
+  {
+    String url="http://10.112.178.22/notice/admin/queryEditNoticeById/9998";
+    //String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+    //System.out.println(token);
+     String result=comm.GetRequest(url, "ce0ed01e-c784-4860-9fff-9e025e70393b", "E:\\queryEditNoticeById.txt");
+     String  message = comm.GetCode(result);
+     Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+}

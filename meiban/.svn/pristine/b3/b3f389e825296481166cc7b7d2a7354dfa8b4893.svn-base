@@ -1,0 +1,99 @@
+package meibanTestNG;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class approveList //审批单申请列表查询
+{
+	Common comm=new Common();
+  @Test
+  public void List() //获取typeID=0,草稿审批单
+  {
+	        
+			String url="http://10.112.178.22/approve/list?companyId=6&typeId=0&pageNo=1&pageSize=1";
+			//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+			//System.out.println(token);
+		    String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+	
+  }
+  @Test
+  public void List1()//获取typeID=1()我已申请的审批单
+  {
+	 
+			String url="http://10.112.178.22/approve/list?companyId=6&typeId=1&pageNo=1&pageSize=1";
+			//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+			//System.out.println(token);
+		    String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		
+  }
+  
+  @Test
+  public void List2()//获取typeID=2()已归档的审批单
+  {
+	 
+			String url="http://10.112.178.22/approve/list?companyId=6&typeId=2&pageNo=1&pageSize=1";
+			//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+			//System.out.println(token);
+		    String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		
+  }
+ /* @Test
+  public void List3()//获取typeID不存在审批单
+  {
+	 
+			String url="http://10.112.178.22/approve/list?companyId=6&typeId=10&pageNo=1&pageSize=1";
+			//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+			//System.out.println(token);
+		    String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+		    String  message = comm.GetCode(result);
+		    Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+		
+  }*/
+  @Test
+  public void List4()//pageNo和pageSize小于等于0
+  {
+	 
+			String url="http://10.112.178.22/approve/list?companyId=6&typeId=2&pageNo=-1&pageSize=-1";
+			//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+			//System.out.println(token);
+		    String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+		    String  message = comm.GetCode(result);
+		//	Assert.assertEquals(comm.Get_Code(result), 0, message);
+		    Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+		
+  }
+  @Test
+  public void List5()//获取typeID小于0
+  {
+	 
+			String url="http://10.112.178.22/approve/list?companyId=6&typeId=-1&pageNo=0&pageSize=0";
+			//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+			//System.out.println(token);
+		    String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+		    String  message = comm.GetCode(result);
+		//	Assert.assertEquals(comm.Get_Code(result), 0, message);
+		    Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+		
+  }
+  @Test
+  public void List6()//companyId不存在
+  {
+	 
+			String url="http://10.112.178.22/approve/list?companyId=1&typeId=-1&pageNo=0&pageSize=0";
+			//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+			//System.out.println(token);
+		    String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+		    String  message = comm.GetCode(result);
+		//	Assert.assertEquals(comm.Get_Code(result), 0, message);
+		    Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+		
+  }
+}

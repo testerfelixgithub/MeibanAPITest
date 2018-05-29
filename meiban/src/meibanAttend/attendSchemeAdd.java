@@ -1,0 +1,260 @@
+package meibanAttend;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class attendSchemeAdd {
+    Common comm = new Common();
+
+    @Test
+    public void attendSchemeAdd() //��������
+    {
+
+        String url = "https://work.pre.gomeplus.com/attend/admin/scheme/add";
+        //  String token=comm.Get_mobile_access_token("13552883581", "MTIzLmdvbWU=");
+        //System.out.println(token);
+        // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+        String params = "{" +
+                "\"scheme\": {" +
+                "\"weekRule\": \"1,2,3,4,5\"," +
+                "\"cid\": 1," +
+                "\"name\": \"fxztest1\"" +
+                "}," +
+                "\"shcemeTimes\": [" +
+                "{" +
+                "\"schemeTime\": {" +
+                "\"beginTime\": \"08:30:00\"," +
+                "\"endTime\": \"17:30:00\"," +
+                "\"beginNooning\": \"12:30:00\"," +
+                "\"endNooning\": \"13:30:00\"," +
+                "\"elasticTime\": 60," +
+                "\"workTime\": \"8.00\"" +
+                "}" +
+                "}" +
+                "]," +
+                "\"schemeAddresses\": [" +
+                "{" +
+                "\"schemeAddress\": {" +
+                "\"name\": \"fxz\"," +
+                "\"clockRange\": 100," +
+                "\"coordinateX\": 116.454276," +
+                "\"coordinateY\": 39.957974" +
+                "}" +
+                "}" +
+                "]," +
+                "\"schemeArranges\": [" +
+                "{" +
+                "\"schemeArrange\": {" +
+                "\"arrangeType\": 1," +
+                "\"arrangeObjectId\": 488" +
+                "}" +
+                "}" +
+                "]" +
+                "}";
+
+        String result = comm.PostRequest(url, params, "1974662b-1be9-4293-83c8-f4d743d8c1ea", "E:\\approveTransfer.txt");
+        String message = comm.GetCode(result);
+        Assert.assertEquals(comm.Get_Code(result), 0, message);
+        // Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+    }
+
+    @Test
+    public void attendSchemeAdd1() //���ڷ�����������
+    {
+
+        String url = "https://work.pre.gomeplus.com/attend/admin/scheme/add";
+        //  String token=comm.Get_mobile_access_token("13552883581", "MTIzLmdvbWU=");
+        //System.out.println(token);
+        // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+        String params = "{" +
+                "\"scheme\": {" +
+                "\"weekRule\": \"1,2,3,4,5\"," +
+                "\"cid\": 1," +
+                "\"name\": \"fxztest1\"" +
+                "}," +
+                "\"shcemeTimes\": [" +
+                "{" +
+                "\"schemeTime\": {" +
+                "\"beginTime\": \"08:30:00\"," +
+                "\"endTime\": \"17:30:00\"," +
+                "\"beginNooning\": \"12:30:00\"," +
+                "\"endNooning\": \"13:30:00\"," +
+                "\"elasticTime\": 60," +
+                "\"workTime\": \"8.00\"" +
+                "}" +
+                "}" +
+                "]," +
+                "\"schemeAddresses\": [" +
+                "{" +
+                "\"schemeAddress\": {" +
+                "\"name\": \"fxz\"," +
+                "\"clockRange\": 100," +
+                "\"coordinateX\": 116.454276," +
+                "\"coordinateY\": 39.957974" +
+                "}" +
+                "}" +
+                "]," +
+                "\"schemeArranges\": [" +
+                "{" +
+                "\"schemeArrange\": {" +
+                "\"arrangeType\": 1," +
+                "\"arrangeObjectId\": 488" +
+                "}" +
+                "}" +
+                "]" +
+                "}";
+
+        String result = comm.PostRequest(url, params, "1974662b-1be9-4293-83c8-f4d743d8c1ea", "E:\\approveTransfer.txt");
+        String message = comm.GetCode(result);
+        //	Assert.assertEquals(comm.Get_Code(result), 0, message);
+        Assert.assertNotEquals(comm.Get_Code(result), 0, 10500, message);
+    }
+
+    @Test
+    public void attendSchemeAdd2() //weekRuleΪNUll
+    {
+
+        String url = "https://work.pre.gomeplus.com/attend/admin/scheme/add";
+        //  String token=comm.Get_mobile_access_token("13552883581", "MTIzLmdvbWU=");
+        //System.out.println(token);
+        // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+        String params = "{" +
+                "\"scheme\": {" +
+                "\"weekRule\": \"\"," +
+                "\"cid\": 1," +
+                "\"name\": \"fxztest2\"" +
+                "}," +
+                "\"shcemeTimes\": [" +
+                "{" +
+                "\"schemeTime\": {" +
+                "\"beginTime\": \"08:30:00\"," +
+                "\"endTime\": \"17:30:00\"," +
+                "\"beginNooning\": \"12:30:00\"," +
+                "\"endNooning\": \"13:30:00\"," +
+                "\"elasticTime\": 60," +
+                "\"workTime\": \"8.00\"" +
+                "}" +
+                "}" +
+                "]," +
+                "\"schemeAddresses\": [" +
+                "{" +
+                "\"schemeAddress\": {" +
+                "\"name\": \"fxz\"," +
+                "\"clockRange\": 100," +
+                "\"coordinateX\": 116.454276," +
+                "\"coordinateY\": 39.957974" +
+                "}" +
+                "}" +
+                "]," +
+                "\"schemeArranges\": [" +
+                "{" +
+                "\"schemeArrange\": {" +
+                "\"arrangeType\": 1," +
+                "\"arrangeObjectId\": 488" +
+                "}" +
+                "}" +
+                "]" +
+                "}";
+
+        String result = comm.PostRequest(url, params, "1974662b-1be9-4293-83c8-f4d743d8c1ea", "E:\\approveTransfer.txt");
+        String message = comm.GetCode(result);
+        //	Assert.assertEquals(comm.Get_Code(result), 0, message);
+        Assert.assertNotEquals(comm.Get_Code(result), 0, 10500, message);
+    }
+
+    @Test
+    public void attendSchemeAdd3() //beginTime and endTimeΪNUll
+    {
+
+        String url = "https://work.pre.gomeplus.com/attend/admin/scheme/add";
+        //  String token=comm.Get_mobile_access_token("13552883581", "MTIzLmdvbWU=");
+        //System.out.println(token);
+        // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+        String params = "{" +
+                "\"scheme\": {" +
+                "\"weekRule\": \"1,2,3,4,5\"," +
+                "\"cid\": 1," +
+                "\"name\": \"fxztest2\"" +
+                "}," +
+                "\"shcemeTimes\": [" +
+                "{" +
+                "\"schemeTime\": {" +
+                "\"beginTime\": \"\"," +
+                "\"endTime\": \"\"," +
+                "\"beginNooning\": \"12:30:00\"," +
+                "\"endNooning\": \"13:30:00\"," +
+                "\"elasticTime\": 60," +
+                "\"workTime\": \"8.00\"" +
+                "}" +
+                "}" +
+                "]," +
+                "\"schemeAddresses\": [" +
+                "{" +
+                "\"schemeAddress\": {" +
+                "\"name\": \"fxz\"," +
+                "\"clockRange\": 100," +
+                "\"coordinateX\": 116.454276," +
+                "\"coordinateY\": 39.957974" +
+                "}" +
+                "}" +
+                "]," +
+                "\"schemeArranges\": [" +
+                "{" +
+                "\"schemeArrange\": {" +
+                "\"arrangeType\": 1," +
+                "\"arrangeObjectId\": 488" +
+                "}" +
+                "}" +
+                "]" +
+                "}";
+
+        String result = comm.PostRequest(url, params, "1974662b-1be9-4293-83c8-f4d743d8c1ea", "E:\\approveTransfer.txt");
+        String message = comm.GetCode(result);
+        //	Assert.assertEquals(comm.Get_Code(result), 0, message);
+        Assert.assertNotEquals(comm.Get_Code(result), 0, 10500, message);
+    }
+
+    @Test
+    public void attendSchemeAdd4() //��ַ�ڵ�NUll
+    {
+
+        String url = "https://work.pre.gomeplus.com/attend/admin/scheme/add";
+        //  String token=comm.Get_mobile_access_token("13552883581", "MTIzLmdvbWU=");
+        //System.out.println(token);
+        // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+        String params = "{" +
+                "\"scheme\": {" +
+                "\"weekRule\": \"1,2,3,4,5\"," +
+                "\"cid\": 1," +
+                "\"name\": \"fxztest2\"" +
+                "}," +
+                "\"shcemeTimes\": [" +
+                "{" +
+                "\"schemeTime\": {" +
+                "\"beginTime\": \"08:30:00\"," +
+                "\"endTime\": \"17:30:00\"," +
+                "\"beginNooning\": \"12:30:00\"," +
+                "\"endNooning\": \"13:30:00\"," +
+                "\"elasticTime\": 60," +
+                "\"workTime\": \"8.00\"" +
+                "}" +
+                "}" +
+                "]," +
+                "\"schemeArranges\": [" +
+                "{" +
+                "\"schemeArrange\": {" +
+                "\"arrangeType\": 1," +
+                "\"arrangeObjectId\": 488" +
+                "}" +
+                "}" +
+                "]" +
+                "}";
+
+        String result = comm.PostRequest(url, params, "1974662b-1be9-4293-83c8-f4d743d8c1ea", "E:\\approveTransfer.txt");
+        String message = comm.GetCode(result);
+        //	Assert.assertEquals(comm.Get_Code(result), 0, message);
+        Assert.assertNotEquals(comm.Get_Code(result), 0, 10500, message);
+    }
+}

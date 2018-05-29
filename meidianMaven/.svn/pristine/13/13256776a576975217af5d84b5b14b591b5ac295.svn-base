@@ -1,0 +1,11 @@
+package meidianMaven.meidianMaven;
+
+import org.testng.annotations.Test;
+
+public class meidianTest {
+  @Test
+  public void f() {
+	  System.out.println("fxztest");
+	
+  }
+}

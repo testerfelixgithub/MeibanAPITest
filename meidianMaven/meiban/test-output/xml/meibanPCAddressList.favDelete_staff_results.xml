@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test"
+           tests="5"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="0.283">
+    <properties/>
+
+
+    <testcase name="favSave_staff1" time="0.026" classname="meibanPCAddressList.favDelete_staff"/>
+    <testcase name="favDelete_staff3" time="0.020" classname="meibanPCAddressList.favDelete_staff"/>
+    <testcase name="favDelete_staff2" time="0.022" classname="meibanPCAddressList.favDelete_staff"/>
+    <testcase name="favDelete_staff4" time="0.017" classname="meibanPCAddressList.favDelete_staff"/>
+    <testcase name="favDelete_staff1" time="0.198" classname="meibanPCAddressList.favDelete_staff"/>
+
+</testsuite>

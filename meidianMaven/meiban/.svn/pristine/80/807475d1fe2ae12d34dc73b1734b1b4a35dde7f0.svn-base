@@ -1,0 +1,156 @@
+package meibanApprove;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import meibanCommon.Common;
+
+public class approveTypeView {  //查看审批组    
+	Common comm =new Common();
+  @Test
+  public void approveTypeView() //审批组ID、公司ID正确
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=54&companyId=6";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+  }
+  @Test
+  public void approveTypeView1() //审批组ID不存在、公司ID正确
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=0&companyId=6";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+	//	Assert.assertEquals(comm.Get_Code(result), 0, message);
+	    Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  
+  @Test
+  public void approveTypeView2() //审批组ID为空、公司ID正确
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=&companyId=6";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+ }
+  @Test
+  public void approveTypeView3() //审批组ID类型不正确、公司ID正确
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId='66'&companyId=6";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+  }
+  @Test
+  public void approveTypeView4() //新建审批组
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=82&companyId=6";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+  }
+  @Test
+  public void approveTypeView5() //删除审批组
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=81&companyId=6";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+  }
+  @Test
+  public void approveTypeView6() //审批组ID正确、公司ID为空
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=82&companyId=null";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+  }
+  
+  @Test
+  public void approveTypeView7() //审批组ID、公司ID不正确
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=82&companyId=55";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+  }
+  
+  @Test
+  public void approveTypeView8() //审批组ID正确、公司ID类型不正确
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=82&companyId='6'";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+  }
+  @Test
+  public void approveTypeView9() //审批组ID不正确、公司ID不正确
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=99&companyId=66";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+  }
+  
+  @Test
+  public void approveTypeView10() //审批组ID：0、公司ID正确
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=0&companyId=6";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+  }
+  @Test
+  public void approveTypeView11() //审批组ID：<0、公司ID正确
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=-1&companyId=6";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+  }
+  @Test
+  public void approveTypeView12() //审批组ID：正确、公司ID：<0
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=54&companyId=-1";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+  }
+  @Test
+  public void approveTypeView13() //审批组ID：正确、公司ID：=0
+  {
+	  String url="http://10.112.178.22/approve/setting/type/view?typeId=54&companyId=0";
+		//String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	    String result=comm.GetRequest(url, "49f00be0-462a-46af-9c9b-e5e572a4c723", "E:\\approveTypeView.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,10500, message);	   
+  }
+}
+

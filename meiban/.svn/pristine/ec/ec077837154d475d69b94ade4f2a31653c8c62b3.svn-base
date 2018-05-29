@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test"
+           tests="10"
+           failures="1"
+           errors="0"
+           skipped="0"
+           time="0.552">
+  <properties />
+            <testcase name="ApproveTransfer" time="0.266" classname="meibanApprove.approveTransfer">
+                <failure type="java.lang.AssertionError"
+                  message="202065 StateMessage:该申请单已撤销，暂无法继续转交 expected [0] but found [202065]"
+              >
+<![CDATA[java.lang.AssertionError: 202065 StateMessage:该申请单已撤销，暂无法继续转交 expected [0] but found [202065]
+  org.testng.Assert.fail(Assert.java:94)
+  org.testng.Assert.failNotEquals(Assert.java:496)
+  org.testng.Assert.assertEquals(Assert.java:125)
+  org.testng.Assert.assertEquals(Assert.java:372)
+  meibanApprove.approveTransfer.ApproveTransfer(approveTransfer.java:22)
+  sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+  sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+  sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+  java.lang.reflect.Method.invoke(Unknown Source)
+  org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+  org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+  org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+  org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+  org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+  org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+  org.testng.TestRunner.privateRun(TestRunner.java:774)
+  org.testng.TestRunner.run(TestRunner.java:624)
+  org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+  org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+  org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+  org.testng.SuiteRunner.run(SuiteRunner.java:261)
+  org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+  org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+  org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
+  org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
+  org.testng.TestNG.run(TestNG.java:1024)
+  org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:112)
+  org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:205)
+  org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:176)
+]]>
+      </failure>
+
+          </testcase>
+  
+  
+            <testcase name="ApproveTransfer5" time="0.030" classname="meibanApprove.approveTransfer" />
+                <testcase name="ApproveTransfer2" time="0.030" classname="meibanApprove.approveTransfer" />
+                <testcase name="ApproveTransfer6" time="0.033" classname="meibanApprove.approveTransfer" />
+                <testcase name="ApproveTransfer4" time="0.035" classname="meibanApprove.approveTransfer" />
+                <testcase name="ApproveTransfer7" time="0.035" classname="meibanApprove.approveTransfer" />
+                <testcase name="ApproveTransfer9" time="0.026" classname="meibanApprove.approveTransfer" />
+                <testcase name="ApproveTransfer8" time="0.030" classname="meibanApprove.approveTransfer" />
+                <testcase name="ApproveTransfer3" time="0.030" classname="meibanApprove.approveTransfer" />
+                <testcase name="ApproveTransfer1" time="0.037" classname="meibanApprove.approveTransfer" />
+      
+</testsuite>

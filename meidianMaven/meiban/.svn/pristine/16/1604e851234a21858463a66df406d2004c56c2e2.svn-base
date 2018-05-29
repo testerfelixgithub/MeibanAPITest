@@ -1,0 +1,111 @@
+package meibanNotice;
+import meibanCommon.Common;
+import org.testng.Assert;
+
+import org.testng.annotations.Test;
+
+public class noticeQueryNoticeStaffInfo {//员工查看公告列表
+	
+	Common comm=new Common();
+	
+  @Test
+  public void noticeQueryNoticeStaffInfo() {//正常数据
+	  String url="https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=1&pageSize=1";
+	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+	  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String result=comm.GetRequest(url, token, "E:\\noticeQueryNoticeStaffInfo.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void noticeQueryNoticeStaffInfo1() {//正常数据     是否收藏为空
+	  String url="https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=1&pageSize=2&hascollect=";
+	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+	  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String result=comm.GetRequest(url, token, "E:\\noticeQueryNoticeStaffInfo.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void noticeQueryNoticeStaffInfo2() {//正常数据     是否收藏为0 未收藏 返回数据为空，实际是有数据的
+	  String url="https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=1&pageSize=2&hascollect=0";
+	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+	  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String result=comm.GetRequest(url, token, "E:\\noticeQueryNoticeStaffInfo.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void noticeQueryNoticeStaffInfo3() {//正常数据     是否收藏为 1 已收藏
+	  String url="https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=1&pageSize=2&hascollect=1";
+	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+	  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String result=comm.GetRequest(url, token, "E:\\noticeQueryNoticeStaffInfo.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void noticeQueryNoticeStaffInfo4() {//页数超过最大值，返回数据了有问题应该
+	  String url="https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=2000&pageSize=1";
+	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+	  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String result=comm.GetRequest(url, token, "E:\\noticeQueryNoticeStaffInfo.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void noticeQueryNoticeStaffInfo5() {//页数不存在 报10500错误
+	  String url="https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=-1&pageSize=20";
+	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+	  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String result=comm.GetRequest(url, token, "E:\\noticeQueryNoticeStaffInfo.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void noticeQueryNoticeStaffInfo6() {//页数为空
+	  String url="https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=&pageSize=20";
+	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+	  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String result=comm.GetRequest(url, token, "E:\\noticeQueryNoticeStaffInfo.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void noticeQueryNoticeStaffInfo7() {//页面显示个数不存在   报10500
+	  String url="https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=1&pageSize=-1";
+	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+	  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String result=comm.GetRequest(url, token, "E:\\noticeQueryNoticeStaffInfo.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void noticeQueryNoticeStaffInfo8() {//页面显示个数为空
+	  String url="https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=1&pageSize=";
+	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+	  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String result=comm.GetRequest(url, token, "E:\\noticeQueryNoticeStaffInfo.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void noticeQueryNoticeStaffInfo9() {//公告是否收藏状态码不存在  报10500
+	  String url="https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=1&pageSize=-1";
+	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+	  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String result=comm.GetRequest(url, token, "E:\\noticeQueryNoticeStaffInfo.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+}

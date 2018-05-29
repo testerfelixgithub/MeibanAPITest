@@ -1,0 +1,507 @@
+package meibanNotice;
+
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+import meibanCommon.Common;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class noticeInsertNotice { //管理员添加公告
+	Common comm=new Common();
+	//获取当前时间
+  public Date getDate() // ParseException
+  {
+	  SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+	  String date=df.format(new Date());
+	  Date newDate=null;
+	  try
+	  {
+	   newDate=df.parse(date);
+	  }
+	  catch(Exception e)
+	  {
+		  System.out.println(e.getMessage());
+	  }
+	  return newDate;
+  }
+  @Test
+  public void insertnotice() { //正常数据  目前人群是部门
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{"+
+	  "\"title\":\"testpart\","+
+	  "\"state\":1,"+
+	  "\"author\":\"authortest\","+
+	  "\"companyId\":1,"+
+	  "\"text\":\"testpart\","+
+	  "\"noticeTargets\":["+
+						      "{"+
+						          "\"type\": 3,"+
+						          "\"targetid\": 1327"+
+						      "},"+
+						      "{"+
+						          "\"type\": 3,"+
+						          "\"targetid\": 1342"+
+						      "}"+
+						 "]"+
+	  "}";
+//	  System.out.println(params);
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void insertnotice1() { //正常数据    目标人群是公司
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"testcompany\",\"state\": 1,\"author\": \"testcompanyauthor\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 2,"+
+		          "\"targetid\": 1"+
+		      "},"+
+		      "{"+
+		          "\"type\": 2,"+
+		          "\"targetid\": 1"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void insertnotice2() { //正常数据    目标人群是个人
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"testperpon\",\"state\": 1,\"author\": \"testperponanthor\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void insertnotice4() { //正常数据    目标是集团,目前集团还没有
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"testperpon\",\"state\": 1,\"author\": \"testperponanthor\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 1,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 1,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void insertnotice5() { //type目标是部门，targetid目标主键是个人  可以发布成功，但无任何人可查看到
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"testperponerror\",\"state\": 1,\"author\": \"testperponanthorerror\",\"companyId\": 1,\"text\":\"testcompanytexterror\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 3,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 3,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void insertnotice7() { //type不存在，targetid不存在  返回成功了，有BUG
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"testperponerror\",\"state\": 1,\"author\": \"testperponanthorerror\",\"companyId\": 1,\"text\":\"testcompanytexterror\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 0,"+
+		          "\"targetid\": -1"+
+		      "},"+
+		      "{"+
+		          "\"type\": 0,"+
+		          "\"targetid\": -1"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void insertnotice8() { //type为空，targetid为-1
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"testperponerror\",\"state\": 1,\"author\": \"testperponanthorerror\",\"companyId\": 1,\"text\":\"testcompanytexterror\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": ,"+
+		          "\"targetid\": -1"+
+		      "},"+
+		      "{"+
+		          "\"type\": ,"+
+		          "\"targetid\": -1"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void insertnotice9() { //noticeTargets为空
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"testperponerror\",\"state\": 1,\"author\": \"testperponanthorerror\",\"companyId\": 1,\"text\":\"testcompanytexterror\", \"noticeTargets\":[]}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void insertnotice10() { //正常数据    title为64位
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"0123456789012345678901234567890123456789012345678901234567890123\",\"state\": 1,\"author\": \"testperponanthor\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void insertnotice11() { //title大于64位
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"01234567890123456789012345678901234567890123456789012345678901234\",\"state\": 1,\"author\": \"testperponanthor\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void insertnotice12() { //title为空
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"\",\"state\": 1,\"author\": \"testperponanthor\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void insertnotice13() { //正常数据 state为2存为草稿
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"caogao\",\"state\": 2,\"author\": \"testperponanthor\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 3,"+
+		          "\"targetid\": 1327"+
+		      "},"+
+		      "{"+
+		          "\"type\": 3,"+
+		          "\"targetid\": 1342"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void insertnotice14() { //正常数据 state为3定时发送
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"dingshi\",\"state\": 3,\"author\": \"testperponanthor\",\"companyId\": 1,\"text\":\"testcompanytext\",\"sendtime\":\"2018-09-05 17:19:00\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 3,"+
+		          "\"targetid\": 1327"+
+		      "},"+
+		      "{"+
+		          "\"type\": 3,"+
+		          "\"targetid\": 1342"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void insertnotice15() { //state为3定时发送 发送时间小于当前时间
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"dingshi\",\"state\": 3,\"author\": \"testperponanthor\",\"companyId\": 1,\"text\":\"testcompanytext\",\"sendtime\":\"2016-09-05 17:09:00\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 3,"+
+		          "\"targetid\": 1327"+
+		      "},"+
+		      "{"+
+		          "\"type\": 3,"+
+		          "\"targetid\": 1342"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void insertnotice16() { //正常数据   state为4 已撤回
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"chehui\",\"state\": 0,\"author\": \"testperponanthor\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void insertnotice17() { //  state为-1 不存在
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"chehui\",\"state\": -1,\"author\": \"testperponanthor\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void insertnotice18() { //  state为空
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"chehui\",\"state\": ,\"author\": \"testperponanthor\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void insertnotice19() { //  author长度为32
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"author32\",\"state\": 1,\"author\": \"01234567890123456789012345678901\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void insertnotice20() { //  author长度为大于32
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"author32\",\"state\": 1,\"author\": \"012345678901234567890123456789012\",\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void insertnotice21() { //正常数据  author为空
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"author32\",\"state\": 1,\"author\":\"\" ,\"companyId\": 1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result),0, message);
+  }
+  @Test
+  public void insertnotice22() { //  companyId不存在
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"author32\",\"state\": 1,\"author\": \"test\",\"companyId\": -1,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void insertnotice23() { //  companyId为空
+	  String url="https://work.pre.gomeplus.com/notice/admin/insertnotice";
+//	  String token=comm.Get_mobile_access_token("13691246710", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  String params="{\"title\":\"author32\",\"state\": 1,\"author\": \"test\",\"companyId\": ,\"text\":\"testcompanytext\", "+
+			  "\"noticeTargets\":["+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "},"+
+		      "{"+
+		          "\"type\": 4,"+
+		          "\"targetid\": 3620"+
+		      "}"+
+		 "]"+
+    "}";
+	  String result=comm.PostRequest(url, params, token, "E:\\noticeInsertNotice.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+}

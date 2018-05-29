@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="meiban">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/protobuf-java-3.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jdom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/velocity-dep-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/json-lib-2.2.3-jdk15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/com.google.protobuf_2.3.0.jar.zip!/" />
+      <root url="jar://$PROJECT_DIR$/reportng-1.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/protobuf-javanano-3.0.0-alpha-5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/guice-3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

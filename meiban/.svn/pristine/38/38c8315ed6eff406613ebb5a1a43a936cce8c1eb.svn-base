@@ -1,0 +1,84 @@
+package meibanAttend;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class attendRecordCheckClockStatus {
+	Common comm=new Common();
+  @Test
+  public void CheckClockStatus() //正常数值
+  {
+
+	  String url = "https://work.pre.gomeplus.com/attend/user/record/checkClockStatus";
+		//String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	  String par1="{" +
+				 "\"srcFlag\": 2,"+
+		  		 "\"record\":{"+
+	             "\"uid\": 1,"+
+	              "\"deptId\": 1,"+
+	              "\"cid\": 1,"+
+	              "\"clockDate\": 1488297600000,"+
+	              "\"clockTime\": 1800000,"+
+	              "\"clockType\": 2"+
+	                "}}";
+		//   comm.PostRequest(urladd, par1,"1974662b-1be9-4293-83c8-f4d743d8c1ea","E:\\addAttend.txt");
+		   
+		   String result=comm.PostRequest(url, par1, "1974662b-1be9-4293-83c8-f4d743d8c1ea", "E:\\addAttend.txt");
+		String message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+		//Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  
+  @Test
+  public void CheckClockStatus2() //Cid不存在
+  {
+
+	  String url = "https://work.pre.gomeplus.com/attend/user/record/checkClockStatus";
+		//String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	  String par1="{" +
+				 "\"srcFlag\": 2,"+
+		  		 "\"record\":{"+
+	             "\"uid\": 1,"+
+	              "\"deptId\": 1,"+
+	              "\"cid\": 6,"+
+	              "\"clockDate\": 1488297600000,"+
+	              "\"clockTime\": 1800000,"+
+	              "\"clockType\": 2"+
+	                "}}";
+		//   comm.PostRequest(urladd, par1,"1974662b-1be9-4293-83c8-f4d743d8c1ea","E:\\addAttend.txt");
+		   
+		   String result=comm.PostRequest(url, par1, "1974662b-1be9-4293-83c8-f4d743d8c1ea", "E:\\addAttend.txt");
+		String message = comm.GetCode(result);
+		//Assert.assertEquals(comm.Get_Code(result), 0, message);
+		Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  
+  @Test
+  public void CheckClockStatus3() //uid不存在//"clockStatus":9 返回这个没有打卡记录 状态是0
+  {
+
+	  String url = "https://work.pre.gomeplus.com/attend/user/record/checkClockStatus";
+		//String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	  String par1="{" +
+				 "\"srcFlag\": 2,"+
+		  		 "\"record\":{"+
+	             "\"uid\": 1000000,"+
+	              "\"deptId\": 1,"+
+	              "\"cid\": 1,"+
+	              "\"clockDate\": 1488297600000,"+
+	              "\"clockTime\": 1800000,"+
+	              "\"clockType\": 2"+
+	                "}}";
+		//   comm.PostRequest(urladd, par1,"1974662b-1be9-4293-83c8-f4d743d8c1ea","E:\\addAttend.txt");
+		   
+		   String result=comm.PostRequest(url, par1, "1974662b-1be9-4293-83c8-f4d743d8c1ea", "E:\\addAttend.txt");
+		String message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+		//Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+}

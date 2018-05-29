@@ -1,0 +1,30 @@
+package meibanApprove;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class approveMyTasks {
+    Common comm = new Common();
+
+    @Test
+    public void myTasks() { // ���뵥-���������б�(companyId����)
+
+        String url = "https://work.pre.gomeplus.com/approve/myTasks?companyId=1&pageNo=1&pageSize=20";
+        //String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+        //System.out.println(token);
+        String result = comm.GetRequest(url, "e0475be6-e8dc-40bd-8708-cae0eebbf44e", "E:\\approve.txt");
+        String message = comm.GetCode(result);
+        Assert.assertEquals(comm.Get_Code(result), 0, message);
+    }
+
+    @Test
+    public void myTasks1() { // ���뵥-���������б�(companyId������)
+        String url = "https://work.pre.gomeplus.com/approve/myTasks?companyId=2&pageNo=1&pageSize=20";
+        String result = comm.GetRequest(url, "e0475be6-e8dc-40bd-8708-cae0eebbf44e", "E:\\approve.txt");
+        String message = comm.GetCode(result);
+        Assert.assertNotEquals(comm.Get_Code(result), 0, 10500, message);
+    }
+
+}

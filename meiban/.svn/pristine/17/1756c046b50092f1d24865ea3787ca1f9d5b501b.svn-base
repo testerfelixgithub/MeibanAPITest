@@ -1,0 +1,92 @@
+package meibanApprove;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class approveallFlow 
+{
+	Common comm=new Common();
+	
+	@Test
+	 public void approveallFlow()//根据公司ID查询全部能复用的审批单（正常状态）
+		{
+			String url="https://work.pre.gomeplus.com/approve/setting/flow/allFlow?companyId=1&status=1";
+//			String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		}
+	@Test
+	 public void approveallFlow1()//根据公司ID查询全部能复用的审批单（公司ID不存在）
+		{
+			String url="https://work.pre.gomeplus.com/approve/setting/flow/allFlow?companyId=2&status=1";
+//			String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		}
+	@Test
+	 public void approveallFlow2()//根据公司ID查询全部能复用的审批单（公司ID为空）
+	 {
+			String url="https://work.pre.gomeplus.com/approve/setting/flow/allFlow?companyId=&status=1";
+//			String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		}
+	@Test
+	 public void approveallFlow3()//根据公司ID查询全部能复用的审批单（status=0）
+	 {
+			String url="https://work.pre.gomeplus.com/approve/setting/flow/allFlow?companyId=1&status=0";
+//			String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		}
+	@Test
+	 public void approveallFlow4()//根据公司ID查询全部能复用的审批单（status=2）
+	 {
+			String url="https://work.pre.gomeplus.com/approve/setting/flow/allFlow?companyId=1&status=2";
+//			String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		}
+	@Test
+	 public void approveallFlow5()//根据公司ID查询全部能复用的审批单（status<0）
+	 {
+			String url="https://work.pre.gomeplus.com/approve/setting/flow/allFlow?companyId=1&status=-1";
+//			String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		}
+	@Test
+	 public void approveallFlow6()//根据公司ID查询全部能复用的审批单（status不存在的值）
+	 {
+			String url="https://work.pre.gomeplus.com/approve/setting/flow/allFlow?companyId=1&status=100";
+//			String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		}
+	@Test
+	 public void approveallFlow7()//根据公司ID查询全部能复用的审批单（status为空）
+	 {
+			String url="https://work.pre.gomeplus.com/approve/setting/flow/allFlow?companyId=1&status=";
+//			String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		}
+}

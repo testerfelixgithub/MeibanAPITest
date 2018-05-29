@@ -1,0 +1,32 @@
+package meibanCommon;
+
+import java.io.File;
+import java.util.Iterator;
+import java.util.List;
+
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.input.SAXBuilder;
+
+
+public class Config {
+
+    public String getURL() {
+        String url = null;
+        try {
+            SAXBuilder builder = new SAXBuilder();
+            Document doc = builder.build(new File("src/SetEnvironment.xml"));
+            Element foo = doc.getRootElement();
+            List allChildren = foo.getChildren();
+            for (int i = 0; i < allChildren.size(); i++) {
+                url = ((Element) allChildren.get(i)).getChild("url").getText();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return url;
+
+
+    }
+}

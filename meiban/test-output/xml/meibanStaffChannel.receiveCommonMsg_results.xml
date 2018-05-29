@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test"
+           tests="7"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="0.642">
+    <properties/>
+
+
+    <testcase name="receiveCommonMsg3" time="0.096" classname="meibanStaffChannel.receiveCommonMsg"/>
+    <testcase name="receiveCommonMsg2" time="0.104" classname="meibanStaffChannel.receiveCommonMsg"/>
+    <testcase name="receiveCommonMsg6" time="0.031" classname="meibanStaffChannel.receiveCommonMsg"/>
+    <testcase name="receiveCommonMsg5" time="0.028" classname="meibanStaffChannel.receiveCommonMsg"/>
+    <testcase name="receiveCommonMsg7" time="0.033" classname="meibanStaffChannel.receiveCommonMsg"/>
+    <testcase name="receiveCommonMsg1" time="0.252" classname="meibanStaffChannel.receiveCommonMsg"/>
+    <testcase name="receiveCommonMsg4" time="0.098" classname="meibanStaffChannel.receiveCommonMsg"/>
+
+</testsuite>

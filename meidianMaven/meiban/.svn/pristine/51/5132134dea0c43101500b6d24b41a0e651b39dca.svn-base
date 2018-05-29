@@ -1,0 +1,58 @@
+package meibanInterface;
+
+import meibanCommon.Common;
+
+public class attend
+{
+	//public  HttpTransfer httpTransfer;
+		//String url=;
+		Common comm=new Common();
+		public static void main(String[] args) //throws Exception 
+		{
+			//System.out.println("test");
+			
+			attend attend_=new attend();
+			String gettoken=attend_.getToken();
+			System.out.println("token:"+gettoken);
+			String token="10dae0c2-7b09-439d-9170-a79a5097c045";
+		//	attend_.addAttend(gettoken);
+			//attend_.addAttend(token);
+			attend_.listAtdRecord(token);
+		}
+		public String getToken()
+		{
+			String token=comm.Get_mobile_access_token("17010000306", "MTIzLmdvbWU=");
+			return token;
+		}
+		public void addAttend(String token) //throws Exception
+		{
+	      String urladd="https://work.pre.gomeplus.com/attend/user/record/add";
+		   String par1="{\"record\":{"+
+	                " \"id\": 78," +
+	               " \"uid\": 1,"+
+	               " \"uname\": \"fxz\","+
+	                "\"deptId\": 1,"+
+	               "\"deptName\": \"fxzfxz\","+
+	                "\"cid\": 1,"+
+	                "\"clockDate\": 1488297600000,"+
+	                "\"clockTime\": \"12:03:05\","+
+	                "\"clockStatus\": 0,"+
+	                "\"clockType\": 2,"+
+	                "\"clockCommute\": 0}}";
+		   comm.PostRequest(urladd, par1,token,"E:\\aa.txt");	
+		}
+		public void listAtdRecord(String  token)
+		{
+			String url="https://work.pre.gomeplus.com/attend/user/record/listAtdRecord";
+			String params="{\"srcFlag\":2,\"cid\": 1,\"month\": 201706,\"uid\":3,\"deptId\":4}";
+			comm.PostRequest(url, params, token,"E:\\aa.txt");
+		}
+		public void initAtdAddress(String token)
+		{
+			  String url2="https://work.pre.gomeplus.com/attend/user/record/initAtdAddress";
+			  String par="{\"srcFlag\":2,\"record\":{\"cid\":1,\"clockDate\": 1496160000000,\"clockTime\": \"18:01:36\",\"deptId\":1,\"deptName\":\"1\",\"uid\":3952,\"uname\":\"1\"}}";
+			  comm.PostRequest(url2, par, token,"E:\\aa.txt");
+		}
+		
+	
+	}

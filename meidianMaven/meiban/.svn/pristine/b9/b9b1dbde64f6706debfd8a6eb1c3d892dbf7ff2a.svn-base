@@ -1,0 +1,53 @@
+package meibanInterface;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import meibanCommon.Common;
+
+//import org.jboss.netty.handler.codec.http.HttpMethod;
+//import org.jboss.netty.handler.codec.http.HttpResponse;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+//import net.sf.json.JSONArray;
+//import net.sf.json.JSONObject;
+
+//import kraken.utils.test.String;
+
+public class gonggao 
+{
+	//public  HttpTransfer httpTransfer;
+	//String url=;
+	Common aa=new Common();
+	public static void main(String[] args) //throws Exception 
+	{
+		//System.out.println("test");
+		
+		gonggao gg=new gonggao();
+		String gettoken=gg.getToken();
+		//gg.queryNoticeStaffInfo(gettoken);
+		String token="10dae0c2-7b09-439d-9170-a79a5097c045";
+		gg.collectNotice(token);
+	//	gg.queryNoticeStaffInfo(token);
+	}
+	public String getToken()
+	{
+		String token=aa.Get_mobile_access_token("17010000306", "MTIzLmdvbWU=");
+		return token;
+	}
+	
+	public void collectNotice(String token)
+	{
+		String url="https://work.pre.gomeplus.com/notice/collectNotice";
+		String param="{\"id\": 26,\"hascollect\": 1,\"noticeId\": 15}";
+		aa.PutRequest(url, param, token,"E:\\bb.txt");
+	}
+	public void queryNoticeStaffInfo(String token)
+	{
+		String url="https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=1&pageSize=15";
+		aa.GetRequest(url, token,"E:\\bb.txt");
+	}
+}

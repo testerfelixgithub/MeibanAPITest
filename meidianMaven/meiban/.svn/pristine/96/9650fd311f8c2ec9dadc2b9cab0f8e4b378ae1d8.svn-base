@@ -1,0 +1,114 @@
+package meibanChannel;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+//全员频道有启用、停用测试用例代码，（只有全员频道有启用、停用功能，其他频道类型无，0启用，1停用）；
+public class channelopen {
+	Common comm=new Common();
+	  @Test
+	  public void channelopen1() //全员频道启用。
+	  {
+		  String url="http://10.112.178.22/admin/channel/open";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="640bf451-379d-4b2d-b22e-58ee918412dc";
+		  String params="{\"id\":\"5a0a914f346eacad868cf7c1\",\"open\":0}";//全员频道id，启用0
+		  String result=comm.PostRequest(url, params, token, "E:\\channelopen.txt");
+		  String message = comm.GetCode(result);
+		  Assert.assertEquals(comm.Get_Code(result), 0, message);
+		//  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+	  @Test
+	  public void channelopen2() //全员频道停用。
+	  {
+		  String url="http://10.112.178.22/admin/channel/open";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="640bf451-379d-4b2d-b22e-58ee918412dc";
+		  String params="{\"id\":\"5a0a914f346eacad868cf7c1\",\"open\":1}";//全员频道id，停用1
+		  String result=comm.PostRequest(url, params, token, "E:\\channelopen.txt");
+		  String message = comm.GetCode(result);
+		  Assert.assertEquals(comm.Get_Code(result), 0, message);
+		//  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+	  @Test
+	  public void channelopen3() //部门频道启用。
+	  {
+		  String url="http://10.112.178.22/admin/channel/open";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="640bf451-379d-4b2d-b22e-58ee918412dc";
+		  String params="{\"id\":\"5a0a86d5346eacad868cf7b8\",\"open\":0}";//部门频道id，启用0
+		  String result=comm.PostRequest(url, params, token, "E:\\channelopen.txt");
+		  String message = comm.GetCode(result);
+//		  Assert.assertEquals(comm.Get_Code(result), 0, message);
+          Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+	  @Test
+	  public void channelopen4() //部门频道停用。
+	  {
+		  String url="http://10.112.178.22/admin/channel/open";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="640bf451-379d-4b2d-b22e-58ee918412dc";
+		  String params="{\"id\":\"5a0a86d5346eacad868cf7b8\",\"open\":1}";//部门频道id，停用1
+		  String result=comm.PostRequest(url, params, token, "E:\\channelopen.txt");
+		  String message = comm.GetCode(result);
+//		  Assert.assertEquals(comm.Get_Code(result), 0, message);
+          Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+	  @Test
+	  public void channelopen5() //常规频道启用。
+	  {
+		  String url="http://10.112.178.22/admin/channel/open";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="640bf451-379d-4b2d-b22e-58ee918412dc";
+		  String params="{\"id\":\"5a0a9081346eacad868cf7bd\",\"open\":0}";//常规频道id，启用0
+		  String result=comm.PostRequest(url, params, token, "E:\\channelopen.txt");
+		  String message = comm.GetCode(result);
+//		  Assert.assertEquals(comm.Get_Code(result), 0, message);
+          Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+	  @Test
+	  public void channelopen6() //常规频道停用。
+	  {
+		  String url="http://10.112.178.22/admin/channel/open";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="640bf451-379d-4b2d-b22e-58ee918412dc";
+		  String params="{\"id\":\"5a0a9081346eacad868cf7bd\",\"open\":1}";//常规频道id，停用1
+		  String result=comm.PostRequest(url, params, token, "E:\\channelopen.txt");
+		  String message = comm.GetCode(result);
+//		  Assert.assertEquals(comm.Get_Code(result), 0, message);
+          Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+	  @Test
+	  public void channelopen7() //不存在的频道启用。
+	  {
+		  String url="http://10.112.178.22/admin/channel/open";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="640bf451-379d-4b2d-b22e-58ee918412dc";
+		  String params="{\"id\":\"00000\",\"open\":0}";//不存在的频道id，启用0
+		  String result=comm.PostRequest(url, params, token, "E:\\channelopen.txt");
+		  String message = comm.GetCode(result);
+//		  Assert.assertEquals(comm.Get_Code(result), 0, message);
+          Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+	  @Test
+	  public void channelopen8() //不存在的频道停用。
+	  {
+		  String url="http://10.112.178.22/admin/channel/open";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="640bf451-379d-4b2d-b22e-58ee918412dc";
+		  String params="{\"id\":\"00000\",\"open\":1}";//不存在的频道id，停用1
+		  String result=comm.PostRequest(url, params, token, "E:\\channelopen.txt");
+		  String message = comm.GetCode(result);
+//		  Assert.assertEquals(comm.Get_Code(result), 0, message);
+          Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+}

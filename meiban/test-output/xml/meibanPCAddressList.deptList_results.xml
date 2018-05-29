@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test"
+           tests="4"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="1.039">
+    <properties/>
+
+
+    <testcase name="deptList3" time="0.066" classname="meibanPCAddressList.deptList"/>
+    <testcase name="deptList1" time="0.824" classname="meibanPCAddressList.deptList"/>
+    <testcase name="deptList2" time="0.105" classname="meibanPCAddressList.deptList"/>
+    <testcase name="deptList4" time="0.044" classname="meibanPCAddressList.deptList"/>
+
+</testsuite>

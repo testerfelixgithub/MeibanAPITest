@@ -1,0 +1,45 @@
+package meibanAttend;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class attendListAtdRecord {
+	Common comm=new Common();
+  @Test
+  public void attendListAtdRecord() //正常数值参数
+  {
+	  String url2="https://work.pre.gomeplus.com/attend/user/record/listAtdRecord";
+	  String params="{\"srcFlag\":2,\"cid\": 1,\"month\": 201706,\"uid\":3,\"deptId\":4}";
+	//  comm.PostRequest(url2, par, "1974662b-1be9-4293-83c8-f4d743d8c1ea","E:\\UserRecordInitAtdAddress.txt");
+	 // Assert.assertEquals(2, 2);
+	  String result=comm.PostRequest(url2, params, "1974662b-1be9-4293-83c8-f4d743d8c1ea", "E:\\initAtdAddress.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+  }
+  @Test
+  public void attendListAtdRecord1() //Cid不存在
+  {
+	  String url2="https://work.pre.gomeplus.com/attend/user/record/listAtdRecord";
+	  String params="{\"srcFlag\":2,\"cid\": 6,\"month\": 201706,\"uid\":3,\"deptId\":4}";
+	//  comm.PostRequest(url2, par, "1974662b-1be9-4293-83c8-f4d743d8c1ea","E:\\UserRecordInitAtdAddress.txt");
+	 // Assert.assertEquals(2, 2);
+	  String result=comm.PostRequest(url2, params, "1974662b-1be9-4293-83c8-f4d743d8c1ea", "E:\\initAtdAddress.txt");
+	    String  message = comm.GetCode(result);
+		//Assert.assertEquals(comm.Get_Code(result), 0, message);
+	    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  @Test
+  public void attendListAtdRecord2() //Uid不存在
+  {
+	  String url2="https://work.pre.gomeplus.com/attend/user/record/listAtdRecord";
+	  String params="{\"srcFlag\":2,\"cid\": 1,\"month\": 201706,\"uid\":-1,\"deptId\":4}";
+	//  comm.PostRequest(url2, par, "1974662b-1be9-4293-83c8-f4d743d8c1ea","E:\\UserRecordInitAtdAddress.txt");
+	 // Assert.assertEquals(2, 2);
+	  String result=comm.PostRequest(url2, params, "1974662b-1be9-4293-83c8-f4d743d8c1ea", "E:\\initAtdAddress.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	   // Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+}

@@ -1,0 +1,111 @@
+package meibanApprove;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import meibanCommon.Common;
+public class approvelistByType//根据公司ID和流程类型ID查询审批单列表
+{
+	Common comm=new Common();
+
+ @Test
+ public void approvelistByType()//根据公司ID和流程类型ID查询审批单列表 （正常状态）
+	{
+		String url="https://work.pre.gomeplus.com/approve/setting/flow/listByType?companyId=1&typeId=50&status=1";
+//		String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	}
+	@Test
+	public void approvelistByType1()//根据公司ID和流程类型ID查询审批单列表（companyid 不存在的值）
+	{
+		String url="https://work.pre.gomeplus.com/approve/setting/flow/listByType?companyId=2&typeId=50&status=1";
+//		String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	}
+	@Test
+	public void approvelistByType2()//根据公司ID和流程类型ID查询审批单列表（companyid 为空）
+	{
+		String url="https://work.pre.gomeplus.com/approve/setting/flow/listByType?companyId=&typeId=50&status=1";
+//		String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	}
+	@Test
+	public void approvelistByType4()//根据公司ID和流程类型ID查询审批单列表（typeId《0）
+	{
+		String url="https://work.pre.gomeplus.com/approve/setting/flow/listByType?companyId=1&typeId=-1&status=1";
+//		String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	}
+	@Test
+	public void approvelistByType5()//根据公司ID和流程类型ID查询审批单列表（typeId》0不是规定的值）
+	{
+		String url="https://work.pre.gomeplus.com/approve/setting/flow/listByType?companyId=1&typeId=100&status=1";
+//		String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	}
+	@Test
+	public void approvelistByType6()//根据公司ID和流程类型ID查询审批单列表（typeId 为空）
+	{
+		String url="https://work.pre.gomeplus.com/approve/setting/flow/listByType?companyId=1&typeId=&status=1";
+//		String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	}
+ @Test
+	public void approvelistByType7()//根据公司ID和流程类型ID查询审批单列表（status=0）
+	{
+		String url="https://work.pre.gomeplus.com/approve/setting/flow/listByType?companyId=1&typeId=49&status=0";
+//		String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	}
+	 @Test
+	public void approvelistByType8()//根据公司ID和流程类型ID查询审批单列表（status=2）
+	{
+		String url="https://work.pre.gomeplus.com/approve/setting/flow/listByType?companyId=1&typeId=51&status=2";
+//		String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	}
+	 @Test
+		public void approvelistByType9()//根据公司ID和流程类型ID查询审批单列表（status不是规定的值）
+		{
+			String url="https://work.pre.gomeplus.com/approve/setting/flow/listByType?companyId=1&typeId=51&status=3";
+//			String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		}
+	 @Test
+		public void approvelistByType10()//根据公司ID和流程类型ID查询审批单列表（status为空）
+		{
+			String url="https://work.pre.gomeplus.com/approve/setting/flow/listByType?companyId=1&typeId=51&status=";
+//			String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		    String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approve.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		}
+}

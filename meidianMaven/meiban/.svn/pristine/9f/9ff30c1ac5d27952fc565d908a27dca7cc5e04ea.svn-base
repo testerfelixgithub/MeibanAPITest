@@ -1,0 +1,194 @@
+package meibanTestNG;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class doApproveTask { //批量和单个审批
+	Common comm=new Common();
+  @Test
+  public void doApproveTask() //正确数据(数据中存在数据)用例
+  {
+	  String url="http://10.112.178.22/approve/doApproveTask";
+		//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	   // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+	   String params="{"+
+        " \"companyId\":\"6\","+
+         "\"approveId\":["+
+          "79,"+
+          "80"+
+         "],"+
+        "\"result\":true,"+
+         "\"opinion\":\"\","+
+         "\"reason\":\"\","+
+       "\"isSingle\":false"+
+       "}";
+	   String result=comm.PostRequest(url, params, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\doApproveTask.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+  }
+  
+  @Test
+  public void doApproveTask2() //companyId 不存在
+  {
+	  String url="http://10.112.178.22/approve/doApproveTask";
+		//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	   // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+	   String params="{"+
+        " \"companyId\":\"0\","+
+         "\"approveId\":["+
+          "28,"+
+          "29"+
+         "],"+
+        "\"result\":true,"+
+         "\"opinion\":\"\","+
+         "\"reason\":\"\","+
+       "\"isSingle\":false"+
+       "}";
+	   String result=comm.PostRequest(url, params, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\doApproveTask.txt");
+	    String  message = comm.GetCode(result);
+		//Assert.assertEquals(comm.Get_Code(result), 0, message);
+	    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  @Test
+  public void doApproveTask3() //approveId 不存在
+  {
+	  String url="http://10.112.178.22/approve/doApproveTask";
+		//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	   // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+	   String params="{"+
+        " \"companyId\":\"6\","+
+         "\"approveId\":["+
+          "0,"+
+          "1"+
+         "],"+
+        "\"result\":true,"+
+         "\"opinion\":\"\","+
+         "\"reason\":\"\","+
+       "\"isSingle\":false"+
+       "}";
+	   String result=comm.PostRequest(url, params, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\doApproveTask.txt");
+	    String  message = comm.GetCode(result);
+		//Assert.assertEquals(comm.Get_Code(result), 0, message);
+	    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  @Test
+  public void doApproveTask4() //批量拒绝 ，批量不能拒绝，返回非零
+  {
+	  String url="http://10.112.178.22/approve/doApproveTask";
+		//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	   // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+	   String params="{"+
+        " \"companyId\":\"6\","+
+         "\"approveId\":["+
+          "26,"+
+          "27"+
+         "],"+
+        "\"result\":false,"+
+         "\"opinion\":\"\","+
+         "\"reason\":\"\","+
+       "\"isSingle\":false"+
+       "}";
+	   String result=comm.PostRequest(url, params, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\doApproveTask.txt");
+	    String  message = comm.GetCode(result);
+		//Assert.assertEquals(comm.Get_Code(result), 0, message);
+	    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  @Test
+  public void doApproveTask5() //opinion和reason字段传参数，
+  {
+	  String url="http://10.112.178.22/approve/doApproveTask";
+		//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	   // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+	   String params="{"+
+        " \"companyId\":\"6\","+
+         "\"approveId\":["+
+          "79,"+
+          "80"+
+         "],"+
+        "\"result\":true,"+
+         "\"opinion\":\"test\","+
+         "\"reason\":\"test\","+
+       "\"isSingle\":false"+
+       "}";
+	   String result=comm.PostRequest(url, params, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\doApproveTask.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	   // Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  @Test
+  public void doApproveTask6() //单个审批同意result为true,isSingle为true //没有权限审批
+  {
+	  String url="http://10.112.178.22/approve/doApproveTask";
+		//String token=comm.Get_mobile_access_token("17010001027", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	   // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+	   String params="{"+
+        " \"companyId\":\"6\","+
+         "\"approveId\":["+
+          "79"+
+         // "29"+
+         "],"+
+        "\"result\":true,"+
+         "\"opinion\":\"test\","+
+         "\"reason\":\"test\","+
+       "\"isSingle\":true"+
+       "}";
+	   String result=comm.PostRequest(url, params, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\doApproveTask.txt");
+	    String  message = comm.GetCode(result);
+	//	Assert.assertEquals(comm.Get_Code(result), 0, message);
+	    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  @Test
+  public void doApproveTask7() //单个审批拒绝 result为false,isSingle为true,
+  {
+	  String url="http://10.112.178.22/approve/doApproveTask";
+		String token=comm.Get_mobile_access_token("17010000975", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	   // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+	   String params="{"+
+        " \"companyId\":\"6\","+
+         "\"approveId\":["+
+          "121"+
+         // "29"+
+         "],"+
+        "\"result\":false,"+
+         "\"opinion\":\"test\","+
+         "\"reason\":\"test\","+
+       "\"isSingle\":true"+
+       "}";
+	   String result=comm.PostRequest(url, params, token, "E:\\doApproveTask.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	  //  Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  @Test
+  public void doApproveTask8() //单个审批同意result为false,isSingle为true,
+  {
+	  String url="http://10.112.178.22/approve/doApproveTask";
+		String token=comm.Get_mobile_access_token("17010000975", "MTIzLmdvbWU=");
+		//System.out.println(token);
+	   // String result=comm.GetRequest(url, "7ae06007-cb17-4439-b57a-43e236d29043", "E:\\approvelist.txt");
+	   String params="{"+
+        " \"companyId\":\"6\","+
+         "\"approveId\":["+
+          "122"+
+         // "29"+
+         "],"+
+        "\"result\":true,"+
+         "\"opinion\":\"test\","+
+         "\"reason\":\"test\","+
+       "\"isSingle\":true"+
+       "}";
+	   String result=comm.PostRequest(url, params, token, "E:\\doApproveTask.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	  //  Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+}

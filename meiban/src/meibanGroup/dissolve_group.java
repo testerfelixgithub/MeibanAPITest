@@ -1,0 +1,30 @@
+package meibanGroup;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class dissolve_group {
+    Common comm = new Common();
+
+    @Test
+    public void create_group() {
+        String url = "http://10.112.178.22/social/v1/group/create_group";
+        String par1 = "{\"groupName\":\"fuxiaozhenTest\"," +
+                "\"capacity\":\"\"," +
+                "\"memberIds\":\"1039,1040\"}";
+        String result = comm.PostRequest(url, par1, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\dissolve_group1.txt");
+        String message = comm.GetCode(result);
+        Assert.assertEquals(comm.Get_Code(result), 0, message);
+    }
+
+    @Test
+    public void dissolve_group1() {
+        String url = "http://10.112.178.22/social/v1/group/dissolve_group?groupId=5435345";
+        String par1 = "";
+        String result = comm.PostRequest(url, par1, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\dissolve_group1.txt");
+        String message = comm.GetCode(result);
+        Assert.assertEquals(comm.Get_Code(result), 0, message);
+    }
+}

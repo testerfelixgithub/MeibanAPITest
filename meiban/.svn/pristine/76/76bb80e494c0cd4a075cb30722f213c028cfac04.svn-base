@@ -1,0 +1,222 @@
+//协议头同IM，频道只缓存一页聊天消息，每次翻页都要通过http接口从服务器上拉取消息。
+// 频道聊天消息
+// CMD:0x0400
+message ChannelMsg {
+	optional string channelId = 1;  		//频道id
+    optional uint32 channelType = 2;  		//频道类型
+    optional string channelName = 3; 		//频道名称
+    optional string msgId = 4;  			//消息id
+	optional uint32 msgType = 5;  			//消息类型；1:文本、2:语音、3:图片、4:视频、5:位置、6:附件、7:名片、8:频道公告、99:消息透传...
+    optional string msgBody = 6;  			//消息内容
+    optional uint64 fromUid = 7;  			//消息发送者id
+    optional string fromName = 8;  			//消息发送者name
+    optional uint64 sendTime = 9; 			//发送时间
+    optional uint64 msgSeqId = 10; 			//消息seq
+	optional uint32 specialMsgType = 11;	//特殊消息; 0:普通（默认）；3.回执消息
+	optional uint32 praiseCount = 12; 		//点赞计数
+	repeated uint64 praiseUids = 13;		//点赞用户ID列表
+	optional string msgUrl = 14; 			//消息url
+	repeated ChanMsgAttach attch = 15; 		//附件
+	optional ChanMsgLocation location = 16;	//位置
+	optional uint32 unReaderNum = 17;		//消息未读人数
+	optional bool origiImg = 18;			//消息类型为图片时，是否有原图
+	optional ChanAtMsg atMsg = 19;			//@某人
+	optional uint32 isPushBlock = 20;		//消息推送是否堵塞；0:否（推送）、1:是（不推送）
+	optional PushChanMsg pushData = 21;		//消息推送
+	optional uint32 whetherNonCount = 22;	//消息是否不计数；0:否、1:是（不计数）,默认计数
+	optional uint32 whetherHide = 23;		//消息是否隐藏；0:否、1:是（隐藏）,默认显示，隐藏消息不参与计数(默认隐藏消息不计数)
+	optional uint32 isTimelyMsg = 24;		//是否及时消息：0:否（默认），1：是（需要立即拉取）；用于频道增加/减少频道成员等特殊业务逻辑
+	optional uint32 isDelete = 25;			//是否删除；0:否，1:是
+	repeated uint64 receiveUids = 26;		//显示该条消息的用户id列表；为空时都显示该消息，不为空时列表中的用户显示该消息
+	optional string trackGroupId = 27;  	//线程消息群组id
+	optional uint64 trackMsgCount = 28;  	//线程消息数
+	optional string extra = 29;				//扩展
+}
+
+// 聊天附件
+message ChanMsgAttach {
+	optional string attachId = 1;  			//附件id
+	optional string attachName = 2;  		//附件名称
+    optional uint32 attachType = 3;  		//附件类型
+    optional string attachUrl = 4;  		//附件地址
+    optional uint32 attachSize = 5;  		//附件大小；Kb
+	optional uint32 width = 6;				//图片宽
+	optional uint32 height = 7;				//图片高
+    optional uint32 attachPlaytime = 8;  	//附件播放时长(秒)
+    optional uint64 attachUploadtime = 9; 	//附件上传时间
+	optional string extra = 10;				//扩展
+}
+
+// 位置
+message ChanMsgLocation {
+	optional string msgId = 1; 				//消息id
+	optional double longitude = 2;  		//经度
+	optional double latitude = 3;  			//维度
+    optional string imgUrl = 4;  			//截图地址
+    optional string content = 5;  			//地址描述
+	optional string extra = 6;				//扩展
+}
+
+// @某人
+message ChanAtMsg {
+	optional uint32 atType = 1;  		    //消息@类型；1:指定某个/些人、2:所有人
+	repeated uint64 atUids = 2;				//被@的用户id列表
+	optional string extra = 3;				//扩展
+}
+
+//消息推送
+message PushChanMsg {
+	optional string msgId = 1; 				//消息id
+	optional string content = 2; 			//推送内容;不超过150字符
+	optional string title = 3; 				//标题，为null时安卓默认使用应用名做title，ios则依然为null
+	optional string activity = 4; 			//自定义打开应用动作
+	optional string url = 5; 				//点击消息打开的url
+	optional string extras = 6; 			//用户自定义键值对，JSON
+}
+
+// 频道聊天消息通知，客户端在聊天ui界面收到通知根据seqId拉取消息。
+// CMD:0x0401
+message ChannelMsgNotify {
+	optional string channelId = 1;  		//频道id
+    optional uint32 channelType = 2;  		//频道类型
+    optional string channelName = 3; 		//频道名称
+	optional uint64 fromUid = 4;			//消息发送者id
+    optional uint64 sendTime = 5; 			//发送时间
+	optional uint32 msgType = 6;  			//消息类型
+    optional uint64 msgSeqId =7; 			//消息seq
+	optional uint32 isTimelyMsg = 8;		//是否及时消息：0:否（默认），1：是（需要立即拉取）；用于频道增加/减少频道成员等特殊业务逻辑
+	optional bool isPull = 9;				//是否拉取消息
+	optional uint32 specialMsg = 10;		//是否是特殊消息:0否;1-6。用于客户端后台监听并展示。
+	optional ChanAtMsg atMsg = 11;			//@消息
+	optional PushChanMsg pushData = 12;		//消息推送
+	optional string extra = 13;				//扩展
+}
+
+// 上报/提交readSeqId
+// CMD:0x0402
+message SubmitChanReadSeq {
+	 optional string channelId = 1;  		//频道id
+	 optional uint64 uid = 2; 				//用户id
+	 optional uint64 readSeqId = 3; 		//消息已读seq
+	 optional string extra = 4;				//扩展
+}
+
+// 下发/转发readSeqId；转发给在线另一类型终端
+// CMD:0x0403
+message IssueChanReadSeq {
+	 optional string channelId = 1;  		//频道id
+	 optional uint64 readSeqId = 2; 		//消息已读seq
+	 optional string extra = 3;				//扩展
+}
+
+//删除消息
+// CMD:0x0404
+message DeleteChanMsg {
+	optional uint64 uid = 1; 				//用户id
+	optional string nickName = 2; 			//用户昵称
+	optional string channelId = 3;  		//频道id
+	optional string msgId = 4;  			//消息id
+	optional string extra = 5;				//扩展
+}
+
+//删除消息通知其他相关用户
+// CMD:0x0405，只通知在线人员，不需要保存消息
+message IssueDeleteChanMsg {
+	optional uint64 uid = 1; 				//用户id
+	optional string nickName = 2; 			//用户昵称
+	optional string channelId = 3;  		//频道id
+	optional string msgId = 4;  			//消息id
+	optional uint64 optTime = 5;			//操作时间
+	optional string extra = 6;				//扩展
+}
+
+//编辑消息
+// CMD:0x0406
+message EditChanMsg {
+	optional uint64 uid = 1; 				//用户id
+	optional string nickName = 2; 			//用户昵称
+	optional string channelId = 3;  		//频道id
+	optional string msgId = 4;  			//消息id
+	optional uint64 msgSeqId = 5;			//消息序列ID
+	optional string msgBody = 6;  			//消息内容
+	optional string extra = 7;				//扩展
+}
+
+//编辑消息通知其他相关用户
+// CMD:0x0407，只通知在线人员，不需要保存消息
+message IssueEditChanMsg {
+	optional uint64 uid = 1; 				//用户id
+	optional string nickName = 2; 			//用户昵称
+	optional string channelId = 3;  		//频道id
+	optional string msgId = 4;  			//消息id
+	optional uint64 msgSeqId = 5;			//消息序列ID
+	optional uint64 optTime = 6;			//操作时间
+	optional string extra = 7;				//扩展
+}
+
+//已读消息上报【查看一条消息发送已读上报】，已读人员列表通过api获取
+//[特殊消息]3.回执消息[需要上报]
+// CMD:0x0408
+message ReadChanMsgReport {
+	optional uint64 fromUid = 1; 			//发消息的用户id
+	optional string channelId = 2;  		//频道id
+	optional uint64 readUid = 3; 			//已读用户id
+	optional string msgId = 4;  			//消息id
+	optional uint32 sepcialMsgType = 5;		//上报特殊消息类型
+	optional string extra = 6;				//扩展
+}
+
+//已读消息通知【对方收到变成已读或修改已读人数】
+// CMD:0x0409
+message ReadReportChanMsgSync {
+	optional uint64 readUid = 1; 			//读消息的用户id
+	optional string channelId = 2;  		//频道id
+	optional string msgId = 3;  			//消息id
+	optional string extra = 4;				//扩展
+}
+
+// 客户端收取频道信息
+message ChanUserData {
+	repeated ChannelMsg chanMsg = 1;  				//消息列表
+	repeated ChannelInfoMsg channelInfoMsg = 2; 	//用户频道列表信息
+	repeated SpecialMsg specialMsg = 3;				//特殊消息列表
+	optional string extra = 4;						//扩展	
+}
+
+// 用户频道信息
+message ChannelInfoMsg {
+	optional string channelId = 1; 			//频道id
+	optional string channelName = 2;  		//频道名称
+	optional uint32 channelType = 3;  		//频道类型
+	optional uint64 lastMsgTime = 4;		//频道中最后一条消息发送时间
+	optional uint64 maxSeqId = 5;  			//频道最大消息序列号
+	optional uint64 readSeqId = 6;  		//读取至seqId
+	optional uint64 sepcialMsgCount = 7;	//特殊消息计数
+	optional uint32 isMsgBlocked = 8;		//免打扰;0:正常接收,1:免打扰
+	optional uint64 stickies = 9; 			//置顶时间-没有置顶或者取消置顶为0
+	optional string extra = 10;				//扩展
+}
+
+// 用户频道特殊消息
+message SpecialMsg {
+	optional uint64 uid = 1; 				//用户ID
+	optional string msgId = 2;  			//消息ID
+	optional uint64 seqId = 3;  			//消息序列号
+	optional uint64 specialMsgType = 4;  	//特殊消息类型：1.@某人/某些人;2.@everyone;3.回执消息;4.频道公告;5.线程消息;6.关键字消息等。
+	optional uint64 sendTime = 5;  			//发送消息时间
+	optional string extra = 6;				//扩展
+}
+
+//点赞消息通知
+// CMD:0x040A，通知所有人（更新UI上的点赞记数）
+message IssuePraiseChanMsg {
+	optional uint64 fromUid = 1; 			//点赞用户ID
+	optional string nickName = 2; 			//点赞用户昵称	
+	optional uint64 toUid = 3;				//消息用户ID
+	optional string channelId = 4;  		//频道id
+	optional string msgId = 5;  			//消息id
+	optional uint32 count = 6;				//点赞消息计数
+	repeated uint64 likeUids = 7;			//点赞用户ID列表
+	optional uint64 optTime = 8;			//操作时间
+	optional string extra = 9;				//扩展
+}

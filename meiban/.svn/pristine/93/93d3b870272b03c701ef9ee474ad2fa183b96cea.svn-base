@@ -1,0 +1,154 @@
+package meibanAuth;
+
+import meibanCommon.Common;
+import meibanCommon.Config;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class authUpdate {
+ 
+	Common comm = new Common();
+	Config Host = new Config();
+	
+	@Test
+	public void update(){   // Ö°Îñ-±à¼­Ö°Îñ£¨Õý³£Çé¿ö£©
+		
+		String host = Host.getURL();
+		String url = host+"/admin/auth/update";
+//		String url = "https://work.pre.gomeplus.com/admin/auth/update";
+		String token = "2f3f37c4-6997-4746-826a-7171248faffc";
+//		String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+//		System.out.println(token);
+		//String aa=comm.Str_utf("±à¼­Ö°Îñ");
+		String params = "{"+
+				"\"authDesc\":\"²úÆ·\","+
+				"\"authName\":\"chanpinzongjian\","+
+				"\"id\":\"1\""+
+		"}";
+		String result = comm.PostRequest(url, params, token, "E:\\authUpdate.txt");
+		String message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0,message);
+	}
+	
+	@Test
+	public void update1(){   // Ö°Îñ-±à¼­Ö°Îñ£¨Ö°Îñid²»´æÔÚ£©
+		
+		String host = Host.getURL();
+		String url = host+"/admin/auth/update";
+//		String url = "https://work.pre.gomeplus.com/admin/auth/update";
+		String token = "2f3f37c4-6997-4746-826a-7171248faffc";
+//		String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+//		System.out.println(token);
+		//String aa=comm.Str_utf("±à¼­Ö°Îñ");
+		String params = "{"+
+				"\"authDesc\":\"²úÆ·\","+
+				"\"authName\":\"²âÊÔ\","+
+				"\"id\":\"111111\""+
+		"}";
+		String result = comm.PostRequest(url, params, token, "E:\\authUpdate.txt");
+		String message = comm.GetCode(result);
+		Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	}
+	
+	@Test
+	public void update2(){   // Ö°Îñ-±à¼­Ö°Îñ£¨Ö°ÎñidÎª¿Õ£©
+		
+		String host = Host.getURL();
+		String url = host+"/admin/auth/update";
+//		String url = "https://work.pre.gomeplus.com/admin/auth/update";
+		String token = "2f3f37c4-6997-4746-826a-7171248faffc";
+//		String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+//		System.out.println(token);
+		//String aa=comm.Str_utf("±à¼­Ö°Îñ");
+		String params = "{"+
+				"\"authDesc\":\"²úÆ·\","+
+				"\"authName\":\"²âÊÔ\","+
+				"\"id\":"+
+		"}";
+		String result = comm.PostRequest(url, params, token, "E:\\authUpdate.txt");
+		String message = comm.GetCode(result);
+		Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	}
+	
+	@Test
+	public void update3(){   // Ö°Îñ-±à¼­Ö°Îñ£¨Ö°Îñid³¬¹ý20¸ö×Ö·û£©
+		
+		String host = Host.getURL();
+		String url = host+"/admin/auth/update";
+//		String url = "https://work.pre.gomeplus.com/admin/auth/update";
+		String token = "2f3f37c4-6997-4746-826a-7171248faffc";
+//		String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+//		System.out.println(token);
+		//String aa=comm.Str_utf("±à¼­Ö°Îñ");
+		String params = "{"+
+				"\"authDesc\":\"²úÆ·\","+
+				"\"authName\":\"²âÊÔ\","+
+				"\"id\":\"11111222222222222221vvv\""+
+		"}";
+		String result = comm.PostRequest(url, params, token, "E:\\authUpdate.txt");
+		String message = comm.GetCode(result);
+		Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	}
+	
+	@Test
+	public void update4(){   // Ö°Îñ-±à¼­Ö°Îñ£¨µ±Ç°Ö°ÎñÒÑ´æÔÚ£©
+		
+		
+		String host = Host.getURL();
+		String url = host+"/admin/auth/update";
+//		String url = "https://work.pre.gomeplus.com/admin/auth/update";
+		String token = "2f3f37c4-6997-4746-826a-7171248faffc";
+//		String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+//		System.out.println(token);
+		//String aa=comm.Str_utf("±à¼­Ö°Îñ");
+		String params = "{"+
+				"\"authDesc\":\"²úÆ·\","+
+				"\"authName\":\"²âÊÔ\","+
+				"\"id\":\"1\""+
+		"}";
+		String result = comm.PostRequest(url, params, token, "E:\\authUpdate.txt");
+		String message = comm.GetCode(result);
+		Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	}
+	
+	@Test
+	public void update5(){   // Ö°Îñ-±à¼­Ö°Îñ£¨Ö°ÎñÃèÊöÎª¿Õ£©
+		
+		String host = Host.getURL();
+		String url = host+"/admin/auth/update";
+//		String url = "https://work.pre.gomeplus.com/admin/auth/update";
+		String token = "2f3f37c4-6997-4746-826a-7171248faffc";
+//		String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+//		System.out.println(token);
+		//String aa=comm.Str_utf("±à¼­Ö°Îñ");
+		String params = "{"+
+				"\"authDesc\":,"+
+				"\"authName\":\"²âÊÔ\","+
+				"\"id\":\"1\""+
+		"}";
+		String result = comm.PostRequest(url, params, token, "E:\\authUpdate.txt");
+		String message = comm.GetCode(result);
+		Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	}
+	
+	@Test
+	public void update6(){   // Ö°Îñ-±à¼­Ö°Îñ£¨Ö°ÎñÃèÊö³¬¹ý100×Ö£©
+		
+		String host = Host.getURL();
+		String url = host+"/admin/auth/update";
+//		String url = "https://work.pre.gomeplus.com/admin/auth/update";
+		String token = "2f3f37c4-6997-4746-826a-7171248faffc";
+//		String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+//		System.out.println(token);
+		//String aa=comm.Str_utf("±à¼­Ö°Îñ");
+		String params = "{"+
+				"\"authDesc\":\"²ú†Ÿ†ŸÔûÔû´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í†Ÿ†ŸÔûÔû´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í´í\","+
+				"\"authName\":\"²âÊÔ\","+
+				"\"id\":\"1\""+
+		"}";
+		String result = comm.PostRequest(url, params, token, "E:\\authUpdate.txt");
+		String message = comm.GetCode(result);
+		Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	}
+}

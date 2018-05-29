@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test"
+           tests="9"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="0.669">
+    <properties/>
+
+
+    <testcase name="saveDept4" time="0.042" classname="meibanPCAddressList.favSave_dept"/>
+    <testcase name="saveDept" time="0.057" classname="meibanPCAddressList.favSave_dept"/>
+    <testcase name="deleteDept" time="0.293" classname="meibanPCAddressList.favSave_dept"/>
+    <testcase name="saveDept6" time="0.035" classname="meibanPCAddressList.favSave_dept"/>
+    <testcase name="saveDept1" time="0.045" classname="meibanPCAddressList.favSave_dept"/>
+    <testcase name="saveDept0" time="0.060" classname="meibanPCAddressList.favSave_dept"/>
+    <testcase name="saveDept2" time="0.039" classname="meibanPCAddressList.favSave_dept"/>
+    <testcase name="saveDept3" time="0.040" classname="meibanPCAddressList.favSave_dept"/>
+    <testcase name="saveDept5" time="0.058" classname="meibanPCAddressList.favSave_dept"/>
+
+</testsuite>

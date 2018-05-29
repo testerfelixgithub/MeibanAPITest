@@ -1,0 +1,51 @@
+package meibanAuth;
+
+import meibanCommon.Common;
+import meibanCommon.Config;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class authList {
+
+    Common comm = new Common();
+    Config Host = new Config();
+
+    @Test
+    public void list() {   // ְ��-ְ���б��������pageNo��pageSize��Ϊ�գ�
+
+        String host = Host.getURL();
+        String url = host + "/admin/auth/list";
+//		String url = "https://work.pre.gomeplus.comadmin/auth/list";
+        String token = "2f3f37c4-6997-4746-826a-7171248faffc";
+//		String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+//		System.out.println(token);
+        String params = "{" +
+                "\"pageNo\":1," +
+                "\"pageSize\":20" +
+                "}";
+        String result = comm.PostRequest(url, params, token, "E:\\authList.txt");
+        String message = comm.GetCode(result);
+        Assert.assertEquals(comm.Get_Code(result), 0, message);
+    }
+
+    @Test
+    public void list1() {   // ְ��-ְ���б��������pageNo��pageSizeΪ�գ�
+
+        String host = Host.getURL();
+        String url = host + "/admin/auth/list";
+//		String url = "https://work.pre.gomeplus.comadmin/auth/list";
+        String token = "2f3f37c4-6997-4746-826a-7171248faffc";
+//		String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+//		System.out.println(token);
+        String params = "{" +
+                "\"pageNo\":\"\"," +
+                "\"pageSize\":\"\"" +
+                "}";
+
+        String result = comm.PostRequest(url, params, token, "E:\\authList.txt");
+
+        String message = comm.GetCode(result);
+        Assert.assertEquals(comm.Get_Code(result), 0, message);
+    }
+}

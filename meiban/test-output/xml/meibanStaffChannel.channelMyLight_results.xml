@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="channelMyLight"
+           tests="4"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="1.003">
+    <properties/>
+
+
+    <testcase name="channelMyLight3" time="0.059" classname="meibanStaffChannel.channelMyLight"/>
+    <testcase name="channelMyLight2" time="0.056" classname="meibanStaffChannel.channelMyLight"/>
+    <testcase name="channelMyLight1" time="0.848" classname="meibanStaffChannel.channelMyLight"/>
+    <testcase name="channelMyLight4" time="0.040" classname="meibanStaffChannel.channelMyLight"/>
+
+</testsuite>

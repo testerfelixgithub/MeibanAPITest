@@ -1,0 +1,75 @@
+package meibanChannel;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+//删除频道测试用例代码
+public class channeldelete {
+	Common comm=new Common();
+	  @Test
+	  public void channeldelete1() //删除存在的部门频道。
+	  {
+		  String url="http://10.112.178.22/admin/channel/delete";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="7a0da874-e972-400e-a4ce-2572f4bbc5da";
+		  String params="{\"id\":\"5a0a86d5346eacad868cf7b8\"}";//部门频道id
+		  String result=comm.PostRequest(url, params, token, "E:\\channeldelete.txt");
+		  String message = comm.GetCode(result);
+		  Assert.assertEquals(comm.Get_Code(result), 0, message);
+		//  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+	  @Test
+	  public void channeldelete2() //删除存在的常规频道。
+	  {
+		  String url="http://10.112.178.22/admin/channel/delete";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="7a0da874-e972-400e-a4ce-2572f4bbc5da";
+		  String params="{\"id\":\"5a0a9081346eacad868cf7bd\"}";//常规频道id
+		  String result=comm.PostRequest(url, params, token, "E:\\channeldelete.txt");
+		  String message = comm.GetCode(result);
+		  Assert.assertEquals(comm.Get_Code(result), 0, message);
+		//  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+	  @Test
+	  public void channeldelete3() //删除全员频道,不支持删除全员频道，全员频道只可启用停用，创建一次后不可再创建。
+	  {
+		  String url="http://10.112.178.22/admin/channel/delete";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="7a0da874-e972-400e-a4ce-2572f4bbc5da";
+		  String params="{\"id\":\"5a0a914f346eacad868cf7c1\"}";//全员频道id
+		  String result=comm.PostRequest(url, params, token, "E:\\channeldelete.txt");
+		  String message = comm.GetCode(result);
+		  //Assert.assertEquals(comm.Get_Code(result), 0, message);
+		  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+	  @Test
+	  public void channeldelete4() //删除不存在的频道。
+	  {
+		  String url="http://10.112.178.22/admin/channel/delete";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="7a0da874-e972-400e-a4ce-2572f4bbc5da";
+		  String params="{\"id\":\"000\"}";
+		  String result=comm.PostRequest(url, params, token, "E:\\channeldelete.txt");
+		  String message = comm.GetCode(result);
+		  //Assert.assertEquals(comm.Get_Code(result), 0, message);
+		  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+	  @Test
+	  public void channeldelete5() //重复删除。
+	  {
+		  String url="http://10.112.178.22/admin/channel/delete";
+//		  String token=comm.Get_mobile_access_token("18622228888", "MTIzLmdvbWU=");
+//		  System.out.println(token);
+		  String token="7a0da874-e972-400e-a4ce-2572f4bbc5da";
+		  String params="{\"id\":\"5a0a9081346eacad868cf7bd\"}";
+		  String result=comm.PostRequest(url, params, token, "E:\\channeldelete.txt");
+		  String message = comm.GetCode(result);
+		  //Assert.assertEquals(comm.Get_Code(result), 0, message);
+		  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+	  }
+}

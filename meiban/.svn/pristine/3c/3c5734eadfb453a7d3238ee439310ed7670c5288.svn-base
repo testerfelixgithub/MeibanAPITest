@@ -1,0 +1,48 @@
+package meibanApprove;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class approveBoundFlow {
+	
+	Common comm = new Common();
+	
+  @Test
+  public void boundFlow() {  //审批组-查询已绑定的流程和未绑定的流程 （正常状态）
+	  
+	  String url = "https://work.pre.gomeplus.com/approve/setting/type/boundFlow?typeId=50&companyId=1";
+	  String result = comm.GetRequest(url, "e0475be6-e8dc-40bd-8708-cae0eebbf44e", "E:\\approve.txt");
+	  
+	  String message = comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result), 0, message);
+  }
+  
+  @Test
+  public void boundFlow1() {  //审批组-查询已绑定的流程和未绑定的流程 （审批组不存在，公司Id存在）
+	  
+	  String url = "https://work.pre.gomeplus.com/approve/setting/type/boundFlow?typeId=-1&companyId=1";
+	  String result = comm.GetRequest(url, "e0475be6-e8dc-40bd-8708-cae0eebbf44e", "E:\\approve.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  
+  @Test
+  public void boundFlow2() {  //审批组-查询已绑定的流程和未绑定的流程 （审批组存在，公司Id不存在）
+	  
+	  String url = "https://work.pre.gomeplus.com/approve/setting/type/boundFlow?typeId=50&companyId=2";
+	  String result = comm.GetRequest(url, "e0475be6-e8dc-40bd-8708-cae0eebbf44e", "E:\\approve.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  
+  @Test
+  public void boundFlow3() {  //审批组-查询已绑定的流程和未绑定的流程 （审批组不存在，公司Id不存在）
+	  
+	  String url = "https://work.pre.gomeplus.com/approve/setting/type/boundFlow?typeId=-1&companyId=2";
+	  String result = comm.GetRequest(url, "e0475be6-e8dc-40bd-8708-cae0eebbf44e", "E:\\approve.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+}

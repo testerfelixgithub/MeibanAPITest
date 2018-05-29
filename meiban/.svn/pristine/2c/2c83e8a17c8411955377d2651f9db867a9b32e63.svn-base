@@ -1,0 +1,82 @@
+package meibanStaffChannel;
+
+import meibanCommon.Common;
+import meibanCommon.Config;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class channelUpdateAdmin {
+	Common comm=new Common();
+	Config Host=new Config();
+  @Test
+  public void channelUpdateAdmin1() //管理员转移正常数据
+  {
+	  String host=Host.getURL();
+	  String url=host+"/v1/channel/updateAdmin?id=266018d7-d743-4eba-bf06-3f0056dd7ef7&adminId=7260";
+	  String token="7d61c49d-4935-4cd9-801a-a4b9fddb53db";
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+		 // String params="{\"companyId\":6,\"channelId\":\"266018d7-d743-4eba-bf06-3f0056dd7ef7\",\"staffId\":7088}";
+		  String result=comm.PostRequest(url, "", token, "E:\\updateAdmin.txt");
+		  String message = comm.GetCode(result);
+		 Assert.assertEquals(comm.Get_Code(result), 0, message);
+		//  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void channelUpdateAdmin2() //非管理员转移
+  {
+	  String host=Host.getURL();
+	  String url=host+"/v1/channel/updateAdmin?id=266018d7-d743-4eba-bf06-3f0056dd7ef7&adminId=7260";
+	  String token="7d61c49d-4935-4cd9-801a-a4b9fddb53db";
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+		 // String params="{\"companyId\":6,\"channelId\":\"266018d7-d743-4eba-bf06-3f0056dd7ef7\",\"staffId\":7088}";
+		  String result=comm.PostRequest(url, "", token, "E:\\updateAdmin.txt");
+		  String message = comm.GetCode(result);
+		// Assert.assertEquals(comm.Get_Code(result), 0, message);
+		  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void channelUpdateAdmin3() //频道ID不存在
+  {
+	  String host=Host.getURL();
+	  String url=host+"/v1/channel/updateAdmin?id=2312&adminId=7260";
+	  String token="7d61c49d-4935-4cd9-801a-a4b9fddb53db";
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+		 // String params="{\"companyId\":6,\"channelId\":\"266018d7-d743-4eba-bf06-3f0056dd7ef7\",\"staffId\":7088}";
+		  String result=comm.PostRequest(url, "", token, "E:\\updateAdmin.txt");
+		  String message = comm.GetCode(result);
+		// Assert.assertEquals(comm.Get_Code(result), 0, message);
+		  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void channelUpdateAdmin4() //adminId不存在
+  {
+	  String host=Host.getURL();
+	  String url=host+"/v1/channel/updateAdmin?id=266018d7-d743-4eba-bf06-3f0056dd7ef7&adminId=3435345";
+	  String token="7d61c49d-4935-4cd9-801a-a4b9fddb53db";
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+		 // String params="{\"companyId\":6,\"channelId\":\"266018d7-d743-4eba-bf06-3f0056dd7ef7\",\"staffId\":7088}";
+		  String result=comm.PostRequest(url, "", token, "E:\\updateAdmin.txt");
+		  String message = comm.GetCode(result);
+		// Assert.assertEquals(comm.Get_Code(result), 0, message);
+		  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void channelUpdateAdmin5() //adminId为null
+  {
+	  String host=Host.getURL();
+	  String url=host+"/v1/channel/updateAdmin?id=266018d7-d743-4eba-bf06-3f0056dd7ef7&adminId=";
+	  String token="7d61c49d-4935-4cd9-801a-a4b9fddb53db";
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+		 // String params="{\"companyId\":6,\"channelId\":\"266018d7-d743-4eba-bf06-3f0056dd7ef7\",\"staffId\":7088}";
+		  String result=comm.PostRequest(url, "", token, "E:\\updateAdmin.txt");
+		  String message = comm.GetCode(result);
+		// Assert.assertEquals(comm.Get_Code(result), 0, message);
+		  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+}

@@ -1,0 +1,581 @@
+package meibanAttend;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class checkWorkDay {
+	Common comm=new Common();
+  @Test
+  public void checkWorkDay() //考勤移动打卡考勤出勤安排检查
+  {
+	  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+	 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+    //	System.out.println(token);
+	   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+	  String params="{"+
+	"\"srcFlag\": \"1\","+
+	"\"record\": {"+
+		"\"cid\": \"1\","+
+		"\"clockTime\": \"11:40:28\","+
+		"\"clockDate\": 1504800000000,"+
+		"\"uid\": \"3502\","+
+		"\"uname\": \"11\","+
+		"\"deptId\": \"1336\","+
+		"\"deptName\": \"0803\""+
+	"}"+
+"}";
+	    
+	    String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+  }
+  @Test
+  public void checkWorkDay1() //考勤移动打卡考勤出勤安排检查srcFlag《0
+  {
+	  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+	 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+	  String params="{"+
+				"\"srcFlag\": \"-1\","+   //srcFlag《0
+				"\"record\": {"+
+					"\"cid\": \"1\","+
+					"\"clockTime\": \"11:40:28\","+
+					"\"clockDate\": 1504800000000,"+
+					"\"uid\": \"3502\","+
+					"\"uname\": \"11\","+
+					"\"deptId\": \"1336\","+
+					"\"deptName\": \"0803\""+
+				"}"+
+			"}";
+	    
+	   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+	    String  message = comm.GetCode(result);
+        Assert.assertEquals(comm.Get_Code(result), 0, message);
+	    //Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  @Test
+  public void checkWorkDay2() //考勤移动打卡考勤出勤安排检查srcFlag为空
+  {
+	  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+	 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+	  String params="{"+
+				"\"srcFlag\": \"\","+   //srcFlag为空
+				"\"record\": {"+
+					"\"cid\": \"1\","+
+					"\"clockTime\": \"11:40:28\","+
+					"\"clockDate\": 1504800000000,"+
+					"\"uid\": \"3502\","+
+					"\"uname\": \"11\","+
+					"\"deptId\": \"1336\","+
+					"\"deptName\": \"0803\""+
+				"}"+
+			"}";
+	    
+	   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	   // Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  @Test
+  public void checkWorkDay3() //考勤移动打卡考勤出勤安排检查srcFlag为不存在的值
+  {
+	  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+	 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+	  String params="{"+
+				"\"srcFlag\": \"1000000\","+   //srcFlag为不存在的值
+				"\"record\": {"+
+					"\"cid\": \"1\","+
+					"\"clockTime\": \"11:40:28\","+
+					"\"clockDate\": 1504800000000,"+
+					"\"uid\": \"3502\","+
+					"\"uname\": \"11\","+
+					"\"deptId\": \"1336\","+
+					"\"deptName\": \"0803\""+
+				"}"+
+			"}";
+	   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+	    String  message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+//	    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  @Test
+  public void checkWorkDay4() //考勤移动打卡考勤出勤安排检查 cid<0
+  {
+	  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+	 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+	  String params="{"+
+				"\"srcFlag\": \"1\","+   
+				"\"record\": {"+
+					"\"cid\": \"-1\","+   //cid<0
+					"\"clockTime\": \"11:40:28\","+
+					"\"clockDate\": 1504800000000,"+
+					"\"uid\": \"3502\","+
+					"\"uname\": \"11\","+
+					"\"deptId\": \"1336\","+
+					"\"deptName\": \"0803\""+
+				"}"+
+			"}";
+	    
+	   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+	    String  message = comm.GetCode(result);
+//		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+  @Test
+  public void checkWorkDay5() //考勤移动打卡考勤出勤安排检查 cid为空
+  {
+	  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+	 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//	    System.out.println(token);
+	   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+	  String params="{"+
+				"\"srcFlag\": \"1\","+   
+				"\"record\": {"+
+					"\"cid\": \"\","+   //cid为空
+					"\"clockTime\": \"11:40:28\","+
+					"\"clockDate\": 1504800000000,"+
+					"\"uid\": \"3502\","+
+					"\"uname\": \"11\","+
+					"\"deptId\": \"1336\","+
+					"\"deptName\": \"0803\""+
+				"}"+
+			"}";
+	    
+	   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+	    String  message = comm.GetCode(result);
+//		Assert.assertEquals(comm.Get_Code(result), 0, message);
+	    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+  }
+	@Test
+	  public void checkWorkDay6() //考勤移动打卡考勤出勤安排检查 cid为不存在的值
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+					"\"srcFlag\": \"1\","+   
+					"\"record\": {"+
+						"\"cid\": \"8888\","+   //cid为不存在的值
+						"\"clockTime\": \"11:40:28\","+
+						"\"clockDate\": 1504800000000,"+
+						"\"uid\": \"3502\","+
+						"\"uname\": \"11\","+
+						"\"deptId\": \"1336\","+
+						"\"deptName\": \"0803\""+
+					"}"+
+				"}";
+		    
+		   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+//			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	  }
+	@Test
+	  public void checkWorkDay7() //考勤移动打卡考勤出勤安排检查 clockDate为空
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+					"\"srcFlag\": \"1\","+   
+					"\"record\": {"+
+						"\"cid\": \"1\","+   
+						"\"clockTime\": \"11:40:28\","+
+						"\"clockDate\": ,"+  //clockDate为空
+						"\"uid\": \"3502\","+
+						"\"uname\": \"11\","+
+						"\"deptId\": \"1336\","+
+						"\"deptName\": \"0803\""+
+					"}"+
+				"}";
+		    
+		   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+//			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	  }
+	@Test
+	  public void checkWorkDay8() //考勤移动打卡考勤出勤安排检查 clockDate为非法值
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+					"\"srcFlag\": \"1\","+   
+					"\"record\": {"+
+						"\"cid\": \"1\","+   
+						"\"clockTime\": \"11:40:28\","+
+						"\"clockDate\": 1504800000000d,"+   //clockDate为不存在的值
+						"\"uid\": \"3502\","+
+						"\"uname\": \"11\","+
+						"\"deptId\": \"1336\","+
+						"\"deptName\": \"0803\""+
+					"}"+
+				"}";
+		    
+		   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+//			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	  }
+	@Test
+	  public void checkWorkDay9() //考勤移动打卡考勤出勤安排检查 clockDate《0
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+					"\"srcFlag\": \"1\","+   
+					"\"record\": {"+
+						"\"cid\": \"1\","+   
+						"\"clockTime\": \"11:40:28\","+
+						"\"clockDate\": -1,"+   //clockDate《0
+						"\"uid\": \"3502\","+
+						"\"uname\": \"11\","+
+						"\"deptId\": \"1336\","+
+						"\"deptName\": \"0803\""+
+					"}"+
+				"}";
+		    
+		   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		  //  Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	  }
+	@Test
+	  public void checkWorkDay10() //考勤移动打卡考勤出勤安排检查 clockTime格式不正确
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+					"\"srcFlag\": \"1\","+   
+					"\"record\": {"+
+						"\"cid\": \"1\","+   
+						"\"clockTime\": \"11:40:\","+    //clockTime格式不正确
+						"\"clockDate\": 1504800000000,"+   
+						"\"uid\": \"3502\","+
+						"\"uname\": \"11\","+
+						"\"deptId\": \"1336\","+
+						"\"deptName\": \"0803\""+
+					"}"+
+				"}";
+		    
+		   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+//			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	  }
+	@Test
+	  public void checkWorkDay11() //考勤移动打卡考勤出勤安排检查 clockTime为空
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+					"\"srcFlag\": \"1\","+   
+					"\"record\": {"+
+						"\"cid\": \"1\","+   
+						"\"clockTime\": \"\","+    //clockTime为空
+						"\"clockDate\": 1504800000000,"+   
+						"\"uid\": \"3502\","+
+						"\"uname\": \"11\","+
+						"\"deptId\": \"1336\","+
+						"\"deptName\": \"0803\""+
+					"}"+
+				"}";
+		   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+//			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	  }
+	@Test
+	  public void checkWorkDay12() //考勤移动打卡考勤出勤安排检查 clockTime《0
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+//		    System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+					"\"srcFlag\": \"1\","+   
+					"\"record\": {"+
+						"\"cid\": \"1\","+   
+						"\"clockTime\": \"-1\","+    //clockTime<0
+						"\"clockDate\": 1504800000000,"+   
+						"\"uid\": \"3502\","+
+						"\"uname\": \"11\","+
+						"\"deptId\": \"1336\","+
+						"\"deptName\": \"0803\""+
+					"}"+
+				"}";
+		    
+		   String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+//			Assert.assertEquals(comm.Get_Code(result), 0, message);
+		    Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	  }
+	@Test
+	  public void checkWorkDay13() //考勤移动打卡考勤出勤安排检查 uid<0
+	{
+		String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		//String token=comm.Get_mobile_access_token("15901017165","MTIzLmdvbWU=");
+		//System.out.println(token);
+		//String result=comm.GetRequest(url,"f0f6181e-11a7-4878-94e2-d50bf023216a","E:\\approvelist.txt");
+		  String params="{"+
+					"\"srcFlag\": \"1\","+   
+					"\"record\": {"+
+						"\"cid\": \"1\","+   
+						"\"clockTime\": \"10:11:48\","+    
+						"\"clockDate\": 1504800000000,"+   
+						"\"uid\": \"-11\","+  //uid<0
+						"\"uname\": \"11\","+
+						"\"deptId\": \"1336\","+
+						"\"deptName\": \"0803\""+
+					"}"+
+				"}";
+		   String result=comm.PostRequest(url,params,"f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		   String message=comm.GetCode(result);
+		   Assert.assertEquals(comm.Get_Code(result),0,message);
+		   //Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+	}
+	 @Test
+	  public void checkWorkDay14() //考勤移动打卡考勤出勤安排检查uid为空
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+	    //	System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+		"\"srcFlag\": \"1\","+
+		"\"record\": {"+
+			"\"cid\": \"1\","+
+			"\"clockTime\": \"11:40:28\","+
+			"\"clockDate\": 1504800000000,"+
+			"\"uid\": \"\","+
+			"\"uname\": \"11\","+
+			"\"deptId\": \"1336\","+
+			"\"deptName\": \"0803\""+
+		"}"+
+	"}";
+		    
+		    String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+			//Assert.assertEquals(comm.Get_Code(result), 0, message);
+			 Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+	  }
+	 @Test
+	  public void checkWorkDay15() //考勤移动打卡考勤出勤安排检查uid为非法值
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+	    //	System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+		"\"srcFlag\": \"1\","+
+		"\"record\": {"+
+			"\"cid\": \"1\","+
+			"\"clockTime\": \"11:40:28\","+
+			"\"clockDate\": 1504800000000,"+
+			"\"uid\": \"888888\","+  //uid为非法值
+			"\"uname\": \"11\","+
+			"\"deptId\": \"1336\","+
+			"\"deptName\": \"0803\""+
+		"}"+
+	"}";
+		    
+		    String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+			//Assert.assertEquals(comm.Get_Code(result), 0, message);
+			 Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+	  }
+	 @Test
+	  public void checkWorkDay16() //考勤移动打卡考勤出勤安排检查uname为空
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+	    //	System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+		"\"srcFlag\": \"1\","+
+		"\"record\": {"+
+			"\"cid\": \"1\","+
+			"\"clockTime\": \"11:40:28\","+
+			"\"clockDate\": 1504800000000,"+
+			"\"uid\": \"3502\","+  
+			"\"uname\": \"\","+     //uname为空
+			"\"deptId\": \"1336\","+
+			"\"deptName\": \"0803\""+
+		"}"+
+	"}";
+		    
+		    String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+			//Assert.assertEquals(comm.Get_Code(result), 0, message);
+			 Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+	  }
+	 @Test
+	  public void checkWorkDay17() //考勤移动打卡考勤出勤安排检查uname为特殊字符
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+	    //	System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+		"\"srcFlag\": \"1\","+
+		"\"record\": {"+
+			"\"cid\": \"1\","+
+			"\"clockTime\": \"11:40:28\","+
+			"\"clockDate\": 1504800000000,"+
+			"\"uid\": \"3502\","+  
+			"\"uname\": \"#￥\","+     //uname为特殊字符
+			"\"deptId\": \"1336\","+
+			"\"deptName\": \"0803\""+
+		"}"+
+	"}";
+		    
+		    String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+			//Assert.assertEquals(comm.Get_Code(result), 0, message);
+			 Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+	  }
+	 @Test
+	  public void checkWorkDay18() //考勤移动打卡考勤出勤安排检查deptid为空
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+	    //	System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+		"\"srcFlag\": \"1\","+
+		"\"record\": {"+
+			"\"cid\": \"1\","+
+			"\"clockTime\": \"11:40:28\","+
+			"\"clockDate\": 1504800000000,"+
+			"\"uid\": \"3502\","+  
+			"\"uname\": \"11\","+     
+			"\"deptId\": \"\","+  //deptid为空
+			"\"deptName\": \"0803\""+
+		"}"+
+	"}";
+		    
+		    String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+			//Assert.assertEquals(comm.Get_Code(result), 0, message);
+			 Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+	  }
+	 @Test
+	  public void checkWorkDay19() //考勤移动打卡考勤出勤安排检查deptid《0
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+	    //	System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+		"\"srcFlag\": \"1\","+
+		"\"record\": {"+
+			"\"cid\": \"1\","+
+			"\"clockTime\": \"11:40:28\","+
+			"\"clockDate\": 1504800000000,"+
+			"\"uid\": \"3502\","+  
+			"\"uname\": \"11\","+     
+			"\"deptId\": \"-1\","+  //deptid《0
+			"\"deptName\": \"0803\""+
+		"}"+
+	"}";
+		    
+		    String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+			//Assert.assertEquals(comm.Get_Code(result), 0, message);
+			 Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+	  }
+	 @Test
+	  public void checkWorkDay20() //考勤移动打卡考勤出勤安排检查deptid为非法值
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+	    //	System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+		"\"srcFlag\": \"1\","+
+		"\"record\": {"+
+			"\"cid\": \"1\","+
+			"\"clockTime\": \"11:40:28\","+
+			"\"clockDate\": 1504800000000,"+
+			"\"uid\": \"3502\","+  
+			"\"uname\": \"11\","+     
+			"\"deptId\": \"888888\","+  //deptid为非法值
+			"\"deptName\": \"0803\""+
+		"}"+
+	"}";
+		    
+		    String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+			//Assert.assertEquals(comm.Get_Code(result), 0, message);
+			 Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+	  }
+	 @Test
+	  public void checkWorkDay21() //考勤移动打卡考勤出勤安排检查deptname为空
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+	    //	System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+		"\"srcFlag\": \"1\","+
+		"\"record\": {"+
+			"\"cid\": \"1\","+
+			"\"clockTime\": \"11:40:28\","+
+			"\"clockDate\": 1504800000000,"+
+			"\"uid\": \"3502\","+  
+			"\"uname\": \"11\","+     
+			"\"deptId\": \"1\","+  
+			"\"deptName\": \"\""+    //deptname为空
+		"}"+
+	"}";
+		    
+		    String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+			//Assert.assertEquals(comm.Get_Code(result), 0, message);
+			 Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+	  }
+	 @Test
+	  public void checkWorkDay22() //考勤移动打卡考勤出勤安排检查deptname为特殊字符
+	  {
+		  String url="https://work.pre.gomeplus.com/attend/user/record/checkWorkDay";
+		 // String token=comm.Get_mobile_access_token("15901017165", "MTIzLmdvbWU=");
+	    //	System.out.println(token);
+		   // String result=comm.GetRequest(url, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approvelist.txt");
+		  String params="{"+
+		"\"srcFlag\": \"1\","+
+		"\"record\": {"+
+			"\"cid\": \"1\","+
+			"\"clockTime\": \"11:40:28\","+
+			"\"clockDate\": 1504800000000,"+
+			"\"uid\": \"3502\","+  
+			"\"uname\": \"11\","+     
+			"\"deptId\": \"1\","+  
+			"\"deptName\": \"##\""+    //deptname为特殊字符
+		"}"+
+	"}";
+		    
+		    String result=comm.PostRequest(url, params, "f0f6181e-11a7-4878-94e2-d50bf023216a", "E:\\approveTransfer.txt");
+		    String  message = comm.GetCode(result);
+			//Assert.assertEquals(comm.Get_Code(result), 0, message);
+			 Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+	  }
+}

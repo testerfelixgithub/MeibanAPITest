@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test"
+           tests="6"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="0.713">
+    <properties/>
+
+
+    <testcase name="channelDetail5" time="0.040" classname="meibanStaffChannel.channelDetail"/>
+    <testcase name="channelDetail2" time="0.049" classname="meibanStaffChannel.channelDetail"/>
+    <testcase name="channelDetail3" time="0.044" classname="meibanStaffChannel.channelDetail"/>
+    <testcase name="channelDetail6" time="0.091" classname="meibanStaffChannel.channelDetail"/>
+    <testcase name="channelDetail4" time="0.057" classname="meibanStaffChannel.channelDetail"/>
+    <testcase name="channelDetail1" time="0.432" classname="meibanStaffChannel.channelDetail"/>
+
+</testsuite>

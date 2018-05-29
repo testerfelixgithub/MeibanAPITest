@@ -1,0 +1,67 @@
+package meibanChannel;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class createChannel //创建频道
+{
+	Common comm=new Common();
+
+	@Test
+	
+	 public void create1()//创建部门频道（异常状态）已有部门频道
+
+		{
+			String url="https://work.pre.gomeplus.com/admin/channel/create";
+			String token=comm.Get_mobile_access_token("15910688057", "MTIzLmdvbWU=");
+		   // System.out.println(token);
+			String params= "{" +
+					"\"name\": \"tanbin11\"," +
+					"\"desc\": \"dessccc\"," +
+					"\"adminId\": 433," +
+					"\"attribute\": {" +
+                        "\"privateOwn\": 0," +
+						" \"offical\": 0," +
+						"\"type\": 1" +
+					"}," +
+					"\"filterCond\": {" +
+							" \"deptId\": \"1673\"" +
+					"}," +
+					"\"channellabel\": 0," +
+					"\"companyId\": 1," +
+					"\"specialStaffIds\": [433]" +
+					"}";
+			
+			String result=comm.PostRequest(url, params, token, "E:\\approveTransfer.txt");
+			String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+			//  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+		
+	}
+	
+	@Test
+	
+	 public void create2()//创建常规频道（正常状态）
+
+		{
+			String url="https://work.pre.gomeplus.com/admin/channel/create";
+			String token=comm.Get_mobile_access_token("15910688057", "MTIzLmdvbWU=");
+		   // System.out.println(token);
+			String params= "{\"name\":\"testt161\"," +
+					"\"desc\":\"test111\"," +
+					"\"adminId\":5234," +
+					"\"attribute\":{\"privateOwn\":0,\"offical\":0,\"type\":2}," +
+					"\"filterCond\":{\"deptId\":0},\"companyId\":1," +
+					"\"channellabel\":0," +
+					"\"specialStaffIds\":[5234,4984]}";
+			
+			String result=comm.PostRequest(url, params, token, "E:\\approveTransfer.txt");
+			String  message = comm.GetCode(result);
+			Assert.assertEquals(comm.Get_Code(result), 0, message);
+			//  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+		
+	}
+
+}

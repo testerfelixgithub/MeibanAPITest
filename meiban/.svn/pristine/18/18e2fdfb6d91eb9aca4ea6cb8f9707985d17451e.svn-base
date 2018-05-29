@@ -1,0 +1,177 @@
+package meibanChannel;
+
+import java.io.UnsupportedEncodingException;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class channelQuery {
+	Common comm=new Common();
+  @Test
+  public void channelQuery()  //搜索中文 存在的数字
+  {
+	  
+	  String param = comm.Str_utf("产品");
+	  String url="http://10.112.178.22/admin/channel/channelQuery?companyId=6&channelName="+param+"&pageNo=1&pageSize=10";
+//	 String aa= java.net.URLEncoder.encode(url,"utf-8");
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  url = url.replaceAll(" ","");
+	  String result=comm.GetRequest(url, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\channelQuery1.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result), 0, message);
+	 // Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  
+  @Test
+  public void channelQuery1()  //搜索数字
+  {
+	  
+	//  String param = comm.Str_utf("产品");
+	  String url="http://10.112.178.22/admin/channel/channelQuery?companyId=6&channelName=111&pageNo=1&pageSize=10";
+//	 String aa= java.net.URLEncoder.encode(url,"utf-8");
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	  url = url.replaceAll(" ","");
+	  String result=comm.GetRequest(url, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\channelQuery1.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result), 0, message);
+	 // Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void channelQuery2()  //搜索英文
+  {
+	  
+	//  String param = comm.Str_utf("产品");
+	  String url="http://10.112.178.22/admin/channel/channelQuery?companyId=6&channelName=aaa&pageNo=1&pageSize=10";
+//	 String aa= java.net.URLEncoder.encode(url,"utf-8");
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	//  url = url.replaceAll(" ","");
+	  String result=comm.GetRequest(url, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\channelQuery1.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result), 0, message);
+	 // Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void channelQuery7()  //搜索不存在的频道名称
+  {
+	  
+	//  String param = comm.Str_utf("产品");
+	  String url="http://10.112.178.22/admin/channel/channelQuery?companyId=6&channelName=aaa&pageNo=1&pageSize=10";
+//	 String aa= java.net.URLEncoder.encode(url,"utf-8");
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	//  url = url.replaceAll(" ","");
+	  String result=comm.GetRequest(url, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\channelQuery1.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result), 0, message);
+	 // Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void channelQuery3()  //pageNo为负数
+  {
+	  String param = comm.Str_utf("产品");
+	  String url="http://10.112.178.22/admin/channel/channelQuery?companyId=6&channelName="+param+"&pageNo=-1&pageSize=10";
+//	 String aa= java.net.URLEncoder.encode(url,"utf-8");
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	//  url = url.replaceAll(" ","");
+	  String result=comm.GetRequest(url, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\channelQuery1.txt");
+	  String message=comm.GetCode(result);
+	//  Assert.assertEquals(comm.Get_Code(result), 0, message);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  
+  @Test
+  public void channelQuery8()  //pageNo为0
+  {
+	  String param = comm.Str_utf("产品");
+	  String url="http://10.112.178.22/admin/channel/channelQuery?companyId=6&channelName="+param+"&pageNo=0&pageSize=10";
+//	 String aa= java.net.URLEncoder.encode(url,"utf-8");
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	//  url = url.replaceAll(" ","");
+	  String result=comm.GetRequest(url, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\channelQuery1.txt");
+	  String message=comm.GetCode(result);
+	 // Assert.assertEquals(comm.Get_Code(result), 0, message);
+	 Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void channelQuery4()  //pageNo和pageSize正常页数验证
+  {
+	  
+	
+	  String param = comm.Str_utf("产品");
+	  String url="http://10.112.178.22/admin/channel/channelQuery?companyId=6&channelName="+param+"&pageNo=0&pageSize=15";
+//	 String aa= java.net.URLEncoder.encode(url,"utf-8");
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	//  url = url.replaceAll(" ","");
+	  String result=comm.GetRequest(url, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\channelQuery1.txt");
+	  String message=comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result), 0, message);
+	 // Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  
+  @Test
+  public void channelQuery5()  //pageSize为负数
+  {
+	  
+	
+	  String param = comm.Str_utf("产品");
+	  String url="http://10.112.178.22/admin/channel/channelQuery?companyId=6&channelName="+param+"&pageNo=2&pageSize=-1";
+//	 String aa= java.net.URLEncoder.encode(url,"utf-8");
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	//  url = url.replaceAll(" ","");
+	  String result=comm.GetRequest(url, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\channelQuery1.txt");
+	  String message=comm.GetCode(result);
+	//  Assert.assertEquals(comm.Get_Code(result), 0, message);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void channelQuery6()  //pageSize和pageNo类型不匹配
+  {
+	  
+	
+	  String param = comm.Str_utf("产品");
+	  String url="http://10.112.178.22/admin/channel/channelQuery?companyId=6&channelName="+param+"&pageNo=2&pageSize=qqq";
+//	 String aa= java.net.URLEncoder.encode(url,"utf-8");
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	//  url = url.replaceAll(" ","");
+	  String result=comm.GetRequest(url, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\channelQuery1.txt");
+	  String message=comm.GetCode(result);
+	//  Assert.assertEquals(comm.Get_Code(result), 0, message);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+  @Test
+  public void channelQuery9()  //pageSize为0
+  {
+	  
+	
+	  String param = comm.Str_utf("产品");
+	  String url="http://10.112.178.22/admin/channel/channelQuery?companyId=6&channelName="+param+"&pageNo=2&pageSize=0";
+//	 String aa= java.net.URLEncoder.encode(url,"utf-8");
+	//  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+	//  System.out.println(token);
+//	  String token="189198f0-e11a-42b7-9a4a-0496b4d626d5";
+	//  url = url.replaceAll(" ","");
+	  String result=comm.GetRequest(url, "c81f1723-7b34-4a7c-84c8-4ecb58b3dc42", "E:\\channelQuery1.txt");
+	  String message=comm.GetCode(result);
+	//  Assert.assertEquals(comm.Get_Code(result), 0, message);
+	  Assert.assertNotEquals(comm.Get_Code(result),0,10500,message);
+  }
+}

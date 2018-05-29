@@ -1,0 +1,32 @@
+package meibanNotice;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class noticeQuerySendTimeByNoticeId {
+	
+	Common comm = new Common();
+	
+	@Test
+	public void querySendTimeByNoticeId() { // 公告管理-管理员查看定时任务时间  ID存在
+	
+		String url = "https://work.pre.gomeplus.com/notice/admin/querySendTimeByNoticeId/970";
+//		String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+//		System.out.println(token);
+		String result = comm.GetRequest(url, "e5156067-988a-4993-9d68-0aba52e08005", "E:\\approve.txt");	
+		String message = comm.GetCode(result);
+		Assert.assertEquals(comm.Get_Code(result), 0, message);
+  }
+	
+	@Test
+	public void queryNoticeById1() { // 公告管理-管理员查看公告详细  ID不存在
+		String url = "https://work.pre.gomeplus.com/notice/admin/querySendTimeByNoticeId/1";
+		//String token=comm.Get_mobile_access_token("13521145233", "MTIzLmdvbWU=");
+		//System.out.println(token);
+		String result = comm.GetRequest(url, "e0475be6-e8dc-40bd-8708-cae0eebbf44e", "E:\\approve.txt");
+		String message = comm.GetCode(result);
+		Assert.assertNotEquals(comm.Get_Code(result), 0, 10500,message);
+	}
+}

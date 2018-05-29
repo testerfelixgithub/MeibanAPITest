@@ -1,0 +1,61 @@
+package meibanNotice;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import meibanCommon.Common;
+
+//import org.jboss.netty.handler.codec.http.HttpMethod;
+//import org.jboss.netty.handler.codec.http.HttpResponse;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+//import net.sf.json.JSONArray;
+//import net.sf.json.JSONObject;
+
+//import kraken.utils.test.String;
+
+public class gonggao {
+    //public  HttpTransfer httpTransfer;
+    //String url=;
+    Common aa = new Common();
+
+    public static void main(String[] args) //throws Exception
+    {
+        //System.out.println("test");
+
+        gonggao gg = new gonggao();
+        //String gettoken=gg.getToken();
+        //gg.queryNoticeStaffInfo(gettoken);
+        String token = "10dae0c2-7b09-439d-9170-a79a5097c045";
+        //	gg.collectNotice(token);
+        //	gg.queryNoticeStaffInfo(token);
+        gg.collectNotice(token);
+        //	gg.queryNoticeStaffInfo(token);
+
+    }
+
+    public String getToken() {
+        String token = aa.Get_mobile_access_token("17010000306", "MTIzLmdvbWU=");
+        return token;
+    }
+
+    public void collectNotice(String token) {
+        String url = "https://work.pre.gomeplus.com/notice/collectNotice";
+        String param = "{\"id\": 26,\"hascollect\": 1,\"noticeId\": 15}";
+        aa.PutRequest(url, param, token, "E:\\bb.txt");
+    }
+
+    public void queryNoticeStaffInfo(String token) {
+        String url = "https://work.pre.gomeplus.com/notice/queryNoticeStaffInfo?pageNo=1&pageSize=15";
+        aa.GetRequest(url, token, "E:\\bb.txt");
+    }
+
+    public void pushMessaage() {
+        String url = "http://10.112.178.125:8080/gomeplus-oa-channel/message/pullChannelMsg?appId=123456789&userId=2471&signature=0c0410495b836d916a28751209c1ebe8&timestamp=1492587438439&platform=1";
+        String parm = "{\"channelId\":\"14cd51c13c6842708dc70b3b3ac35422\",\"msgSeqId\":107,\"pageSize\":20,\"upOrDown\":0,\"msgId\":\"4ccd8ee30d4743ed9aafa491c8b304cc\"}";
+        aa.PostRequest(url, parm, "", "");
+    }
+}

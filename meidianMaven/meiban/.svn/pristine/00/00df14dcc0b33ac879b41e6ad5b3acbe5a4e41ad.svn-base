@@ -1,0 +1,111 @@
+package meibanApprove;
+
+import meibanCommon.Common;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class approveTypeUpdate {  //修改审批组
+	
+	Common comm=new Common();
+	
+  @Test
+  public void typeUpdate() {  //正常数据
+	  String url = "http://10.112.178.22/approve/setting/type/update";
+//	  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="66e287b5-4b8e-4c20-87d3-db01c8ef3fac";
+	  String params="{\"id\": 49,\"name\": \"test\",\"companyId\": 6,\"status\": true}";
+	  String result=comm.PostRequest(url, params, token, "E:\\approveTypeUpdate.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result), 0, message);
+  }
+  @Test
+  public void typeUpdate1() {  //审批组ID不存在
+	  String url = "http://10.112.178.22/approve/setting/type/update";
+//	  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="66e287b5-4b8e-4c20-87d3-db01c8ef3fac";
+	  String params="{\"id\": -1,\"name\": \"test\",\"companyId\": 6,\"status\": true}";
+	  String result=comm.PostRequest(url, params, token, "E:\\approveTypeUpdate.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void typeUpdate2() {  //审批组ID为空    报错了
+	  String url = "http://10.112.178.22/approve/setting/type/update";
+//	  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="66e287b5-4b8e-4c20-87d3-db01c8ef3fac";
+	  String params="{\"id\":,\"name\": \"test\",\"companyId\": 6,\"status\": true}";
+	  String result=comm.PostRequest(url, params, token, "E:\\approveTypeUpdate.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void typeUpdate3() {  //修改的审批组名称已存在 
+	  String url = "http://10.112.178.22/approve/setting/type/update";
+//	  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="66e287b5-4b8e-4c20-87d3-db01c8ef3fac";
+	  String params="{\"id\": 49,\"name\": \"test1\",\"companyId\": 6,\"status\": true}";
+	  String result=comm.PostRequest(url, params, token, "E:\\approveTypeUpdate.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void typeUpdate4() {  //修改的审批组名称为空   报错了
+	  String url = "http://10.112.178.22/approve/setting/type/update";
+//	  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="66e287b5-4b8e-4c20-87d3-db01c8ef3fac";
+	  String params="{\"id\": 49,\"name\":\"\",\"companyId\": 6,\"status\": true}";
+	  String result=comm.PostRequest(url, params, token, "E:\\approveTypeUpdate.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void typeUpdate5() {  //公司ID错误  提示No permission
+	  String url = "http://10.112.178.22/approve/setting/type/update";
+//	  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="66e287b5-4b8e-4c20-87d3-db01c8ef3fac";
+	  String params="{\"id\": 49,\"name\": \"test\",\"companyId\": 1,\"status\": true}";
+	  String result=comm.PostRequest(url, params, token, "E:\\approveTypeUpdate.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void typeUpdate6() {  //公司ID为空  报错11003
+	  String url = "http://10.112.178.22/approve/setting/type/update";
+//	  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="66e287b5-4b8e-4c20-87d3-db01c8ef3fac";
+	  String params="{\"id\": 49,\"name\": \"test\",\"companyId\": ,\"status\": true}";
+	  String result=comm.PostRequest(url, params, token, "E:\\approveTypeUpdate.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+  @Test
+  public void typeUpdate7() {  //启用状态为false  启用状态为false代表停用
+	  String url = "http://10.112.178.22/approve/setting/type/update";
+//	  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="66e287b5-4b8e-4c20-87d3-db01c8ef3fac";
+	  String params="{\"id\": 49,\"name\": \"test\",\"companyId\": 6,\"status\": false}";
+	  String result=comm.PostRequest(url, params, token, "E:\\approveTypeUpdate.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertEquals(comm.Get_Code(result), 0, message);
+  }
+  @Test
+  public void typeUpdate8() {  //启用状态为空  
+	  String url = "http://10.112.178.22/approve/setting/type/update";
+//	  String token=comm.Get_mobile_access_token("15210275852", "MTIzLmdvbWU=");
+//	  System.out.println(token);
+	  String token="66e287b5-4b8e-4c20-87d3-db01c8ef3fac";
+	  String params="{\"id\": 49,\"name\": \"test\",\"companyId\": 6,\"status\": }";
+	  String result=comm.PostRequest(url, params, token, "E:\\approveTypeUpdate.txt");
+	  String message = comm.GetCode(result);
+	  Assert.assertNotEquals(comm.Get_Code(result), 0,10500, message);
+  }
+}
